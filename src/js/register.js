@@ -8,4 +8,7 @@ document.getElementById('register-user').addEventListener('click', event => {
     const userHost = document.getElementById('user-hots').value;
 
     visitorRegister(userName, userEmail, userHost);
+    document.getElementById('user-name').value = '';
+    document.getElementById('user-email').value = '';
+    const userHost = document.getElementById('user-hots').value;
 })
