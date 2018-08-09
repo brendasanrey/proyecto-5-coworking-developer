@@ -13,3 +13,93 @@ En este proyecto la empresa de coworking donde opera Laboratoria en tu ciudad ha
 El objetivo principal de este proyecto es que pongas en práctica todo lo
 aprendido durante el common core, con foco en la calidad, trabajando en un
 equipo multifuncional y presentando tu solución a una audiencia.
+
+## Consideraciones generales
+
+Para completar este proyecto deberás trabajar en un equipo de tres y seguir las
+siguientes consideraciones:
+
+### 1. Planificación y organización
+
+#### Roles, squad multifuncional
+
+Cada integrante del equipo debe asumir alguno de los siguientes "roles" (\*),
+liderando las siguientes áreas de trabajo:
+
+
+**Diseñadora UX**
+
+*Nallely Bravo Rodríguez*
+
+   * Diseñar la experiencia de la aplicación (flujo, interacción, etc.).
+   * Identificar, documentar y priorizar las historias de usuario.
+   * Crear el diseño visual de la interfaz.
+
+**Desarrolladoras Front-end**
+
+*Brenda Paola Sánchez Reyes.*
+*Michele Velázquez de la Rosa Becerra.*
+
+   * Implementar la interfaz de usuario diseñada (HTML/CSS/JS).
+   * Deben dividirse las funcionalidades entre las dos desarrolladoras.
+   * Todas los desarrollos deben incluir pruebas unitarias.
+
+El rol de Product Manager es asumido por Nallely Bravo pero igualmente, las responsabilidades de gestionar las actividades son discutidas con Brenda Sánchez y Michel Velázquez en los dailys diarios (9:00am) además de asignadas y compartidas entre todas las integrantes.
+
+### 1.-Planificación inicial
+
+Con respecto al desarrollo de Front END (Aquí le llenan ustedes)
+
+### 2. Detalles sobre la implementación
+
+Con respecto a las dependencias, Frameworks, y más mágias que se vayan a usar.
+
+#### Tecnologías:
+
+*Breve descripción de las tecnologías utilizadas, frameworks (versiones incluidas), compiladores, gestores de tareas, librerías relevantes de javascript. En fin, un pequeño parrafo que con leerlo te puedas hacer una idea de sobre qué estás trabajando.*
+
+GitHub:
+
+GitKraken:
+
+Google Drive:
+
+Procesadores de texto: Visual Studio, Sublime, Atom
+
+Firebase:
+
+Trello:
+
+Scketch:
+
+Adobe Ilustrator:
+
+Adobe Photoshop:
+
+Marvel:
+
+
+#### Organización:
+(Estructura de ficheros de Bedrock, un boilerplate)
+
+Explicar las Funciones implementadas.
+
+### 3. Investigación y planteamiento de hipótesis User Research
+
+* Hipótesis
+* Historias de usuario
+* Entrevistas como cliente incognito
+* Análisis de productos en el mercado
+* Benchmark
+* Insights
+* Proto Persona
+
+### 4. Diseño User Experience
+
+* Wireframes baja fidelidad
+* Testeo de flujo
+* Flujo final
+* Mockups de alta fidelidad
+* Arquitectura del sitio.
+* Pruebas de usabilidad con prototipo de alta fidelidad.
+* Insights de las pruebas de usabilidad.
