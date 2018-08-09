@@ -67,6 +67,8 @@ window.showUserCard = (userID) =>{
 }
 
 window.drawListOfVisitors = () =>{
+  document.getElementById('table1').style.display = 'block';
+  document.getElementById('table2').style.display = 'none';
   let db = firebase.firestore();
   let tableContent = '';
   let i = 1;
@@ -90,4 +92,27 @@ window.drawListOfVisitors = () =>{
     console.log('Error', error);
   })
 
+}
+
+drawListOfHosts = () =>{
+  document.getElementById('table1').style.display = 'none';
+  document.getElementById('table2').style.display = 'block';
+  let db = firebase.firestore();
+  let tableContent = '';
+  let i = 1;
+  db.collection('Co-Workings').get()
+    .then(result => {
+      result.forEach(host => {
+        tableContent += `<tr>
+        <th scope="row">${i++}</th>
+        <td>${host.data().Agencia}</td>
+        <td>${host.data().Teléfono}</td>
+        <td>${host.data().email}</td>
+      </tr>`
+      });
+      document.getElementById('table-content2').innerHTML = tableContent;
+    })
+    .catch(error => {
+      console.log('Error', error);
+    })
 }

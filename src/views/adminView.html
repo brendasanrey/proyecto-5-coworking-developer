@@ -47,13 +47,13 @@
         <div class="row">
             <div class="col-lg-2 mt-4">
                 <div class="list-group">
-                    <a href="#" class="list-group-item active">Visitantes</a>
-                    <a href="#" class="list-group-item">Hosts</a>
-                    <a href="#" class="list-group-item">Otro</a>
+                    <button class="list-group-item" onclick="drawListOfVisitors()" >Visitantes</button>
+                    <button class="list-group-item" onclick="drawListOfHosts()">Agencias</button>
+                    <button class="list-group-item" onclick="">Empleados</button>
                 </div>
             </div>
             <div class="col-lg-10 mt-4">
-                <table class="table">
+                <table class="table" id="table1">
                     <thead class="thead-dark">
                         <tr class="text-center">
                             <th scope="col">#</th>
@@ -65,9 +65,19 @@
                             <th scope="col">Opciones</th>
                         </tr>
                     </thead>
-                    <tbody id="table-content">
-                        
-                        
+                    <tbody id="table-content"> 
+                    </tbody>
+                </table>
+                <table class="table" id="table2">
+                    <thead class="thead-dark">
+                        <tr class="text-center">
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Teléfono</th>
+                            <th scope="col">Email</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-content2">
                     </tbody>
                 </table>
             </div>
