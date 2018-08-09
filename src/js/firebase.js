@@ -72,7 +72,7 @@ window.drawListOfVisitors = () =>{
   let db = firebase.firestore();
   let tableContent = '';
   let i = 1;
-  db.collection('visitors').get()
+  db.collection('visitors').orderBy('date', 'desc').get()
   .then(result =>{
     result.forEach(visitor =>{
       const status = drawStatusBadge(visitor.data().status);
