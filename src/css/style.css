@@ -1,0 +1,13 @@
+.no-btn{
+    background-color: inherit;
+    border: none;
+}
+
+.small-text{
+    font-size: 15px;
+}
+
+.border-card{
+    padding: 20px;
+    border: 1px solid #000;
+}   
