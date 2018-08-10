@@ -9,40 +9,62 @@ window.initializeFirebase = () => {
   });
 }
 
-window.visitorRegister = (userName, userEmail, userHost) => {
+window.visitorRegister = (userName, userEmail, userAgency, userHost) => {
   let db = firebase.firestore();
   const date = firebase.firestore.FieldValue.serverTimestamp();
-  db.collection('visitors').add({
-    userName: userName,
-    userEmail: userEmail,
-    userHost: userHost,
-    date: date, 
-    status: 0
-  })
-    .then(result => {
-      swal({
-        confirmButtonText: 'Aceptar',
-        type: 'success',
-        title: 'Su visita fue registrada',
-        text: 'Debe esperar a la confirmación del host'
-      })
+  db.collection('Co-Workings').doc(userAgency).get()
+  .then(result =>{
+    db.collection('visitors').add({
+      userName: userName,
+      userEmail: userEmail,
+      userAgencyID: userAgency,
+      userAgencyName: result.data().Agencia,
+      userHost: userHost,
+      date: date,
+      status: 0
     })
-    .catch(error => {
-      console.log('Tiene que registrarse primero', error);
-    });
+      .then(result => {
+        swal({
+          confirmButtonText: 'Aceptar',
+          type: 'success',
+          title: 'Su visita fue registrada',
+          text: 'Debe esperar a la confirmación del host'
+        })
+      })
+      .catch(error => {
+        console.log('Tiene que registrarse primero', error);
+      });
+  })  
+}
+
+window.getAgencyList = () => {
+  let db = firebase.firestore();
+  let agencyList = '';
+  db.collection('Co-Workings').orderBy('Agencia', 'asc').get()
+    .then(result => {
+      result.forEach(agency => {
+        agencyList += `<option value = "${agency.id}">${agency.data().Agencia}</option>`;
+      });
+      document.getElementById('user-agency').innerHTML += agencyList;
+    })
 }
 
 window.getHostList = () => {
   let db = firebase.firestore();
   let hostList = '';
-  db.collection('Co-Workings').orderBy('Agencia', 'asc').get()
+  const agencyID = document.getElementById('user-agency').value;
+  document.getElementById('user-host').innerHTML = '<option value="" disabled selected>Elige un anfitrón</option>'; 
+  db.collection('host').orderBy('name', 'asc').get()
     .then(result => {
       result.forEach(host => {
-        hostList += `<option value = "${host.data().Agencia}">${host.data().Agencia}</option>`;
+        if(agencyID === host.data().idAgencia){
+          hostList += `<option value = "${host.id}">${host.data().name}</option>`;
+        }
       });
-      document.getElementById('user-hots').innerHTML += hostList;
+      document.getElementById('user-host').innerHTML += hostList;
     })
 }
+
 
 window.drawStatusBadge = (status) =>{
   let statusElements = '';
@@ -56,12 +78,21 @@ window.drawStatusBadge = (status) =>{
   return statusElements;
 }
 
+window.drawNameHost = (hostID) =>{
+  let db = firebase.firestore();
+  let hostName = '';
+  db.collection('host').doc(hostID).get()
+    .then(response => {
+      hostName = `${response.data().name}`;
+    })
+    return hostName;
+}
+
 window.showUserCard = (userID) =>{
   let db = firebase.firestore();
   db.collection('visitors').doc(userID).get()
   .then(result =>{
     let content = `<div class="small-text border-card d-none" id="userCard"><p>Nombre: ${result.data().userName}</p><p>Correo: ${result.data().userEmail}</p><p>Host: ${result.data().userHost}</p><p>Fecha: ${result.data().date}</p></div>`;
-
     document.getElementById('card-gafete').innerHTML = content;
     let doc = new jsPDF();
     doc.fromHTML($('#card-gafete').get(0), 20, 20,{
@@ -87,11 +118,11 @@ window.drawListOfVisitors = () =>{
         <th scope="row">${i++}</th>
         <td>${visitor.data().userName}</td>
         <td>${visitor.data().userEmail}</td>
-        <td>${visitor.data().userHost}</td>
+        <td>${visitor.data().userAgencyName}</td>
         <td>${visitor.data().date}</td>
         <td>${status}</td>
         <td><button class="no-btn"><span class="badge badge-warning" onclick="showUserCard('${visitor.id}')">Imprimir gafete</span></button></td>
-      </tr>`
+      </tr>`;
     });
     document.getElementById('table-content').innerHTML = tableContent;
   })

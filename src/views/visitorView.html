@@ -27,10 +27,15 @@
                             <input type="email" id="user-email" class="form-control" placeholder ="E-mail" >
                         </div>
                         <div class="form-group">
-                                <select  id="user-hots" class="form-control"> 
-                                    <option value="" disabled selected>Elige un Anfitrón</option>
+                                <select  id="user-agency" class="form-control" onchange="getHostList()"> 
+                                    <option value="" disabled selected>Elige una agencia</option>
                                 </select>
-                            </div>
+                        </div>
+                        <div class="form-group">
+                            <select id="user-host" class="form-control">
+                                <option value="" disabled selected>Elige un anfitrón</option>
+                            </select>
+                        </div>
                             <button class="btn btn-warning mx-auto btn-block" id="register-user">Registrar</button>
                     </form>    
                     </div>
