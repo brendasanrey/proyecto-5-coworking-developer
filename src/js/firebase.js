@@ -69,7 +69,7 @@ window.getHostList = () => {
 window.drawStatusBadge = (status) =>{
   let statusElements = '';
   if(status === 1){
-    statusElements = '<span class="badge badge-success"><i class="fas fa-check-circle"></i> Aprovado</span>';
+    statusElements = '<span class="badge badge-success"><i class="fas fa-check-circle"></i> Aprobado</span>';
   }else if(status === 0) {
     statusElements = '<span class="badge badge-primary"><i class="fas fa-clock"></i> En espera</span>';
   }else{
@@ -107,6 +107,7 @@ window.showUserCard = (userID) =>{
 window.drawListOfVisitors = () =>{
   document.getElementById('table1').style.display = 'block';
   document.getElementById('table2').style.display = 'none';
+  document.getElementById('table3').style.display = 'none';
   let db = firebase.firestore();
   let tableContent = '';
   let i = 1;
@@ -132,9 +133,10 @@ window.drawListOfVisitors = () =>{
 
 }
 
-drawListOfHosts = () =>{
+window.drawListOfAgencies = () =>{
   document.getElementById('table1').style.display = 'none';
   document.getElementById('table2').style.display = 'block';
+  document.getElementById('table3').style.display = 'none';
   let db = firebase.firestore();
   let tableContent = '';
   let i = 1;
@@ -153,4 +155,29 @@ drawListOfHosts = () =>{
     .catch(error => {
       console.log('Error', error);
     })
+}
+
+window.drawListOfHosts = () =>{
+  document.getElementById('table1').style.display = 'none';
+  document.getElementById('table2').style.display = 'none';
+  document.getElementById('table3').style.display = 'block';
+  let db = firebase.firestore();
+  let tableContent = '';
+  let i = 1;
+  db.collection('host').get()
+    .then(result => {
+      result.forEach(host => {
+        tableContent += `<tr>
+        <th scope="row">${i++}</th>
+        <td>${host.data().name}</td>
+        <td>${host.data().email}</td>
+        <td>${host.data().agencia}</td>
+      </tr>`
+      });
+      document.getElementById('table-content3').innerHTML = tableContent;
+    })
+    .catch(error => {
+      console.log('Error', error);
+    })
+
 }

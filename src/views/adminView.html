@@ -10,13 +10,13 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
         crossorigin="anonymous">
     <link rel="stylesheet" href="../css/style.css">
-    <title>Proyecto 5 CoWorking</title>
+    <title>CoWorking Visitors</title>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">CoWorking Visitors</a>
+            <a class="navbar-brand" href="#">CoWorking Visitors | Admin View</a>
         </div>
     </nav>
     <div class="container-fluid mt-4 pt-4">
@@ -24,8 +24,8 @@
             <div class="col-md-2 mt-4">
                 <div class="list-group">
                     <button class="list-group-item" onclick="drawListOfVisitors()" >Visitantes</button>
-                    <button class="list-group-item" onclick="drawListOfHosts()">Agencias</button>
-                    <button class="list-group-item" onclick="">Empleados</button>
+                    <button class="list-group-item" onclick="drawListOfAgencies()">Agencias</button>
+                    <button class="list-group-item" onclick="drawListOfHosts()">Empleados</button>
                 </div>
             </div>
             <div class="col-md-10 mt-4">
@@ -56,6 +56,18 @@
                     <tbody id="table-content2">
                     </tbody>
                 </table>
+                <table class="table" id="table3">
+                    <thead class="thead-dark">
+                        <tr class="text-center">
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Agencia</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-content3">
+                    </tbody>
+                </table>
                 <div id="card-gafete"></div>
             </div>
         </div>
@@ -72,8 +84,6 @@
     <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
     <script src="../js/firebase.js"></script>
     <script> initializeFirebase(); drawListOfVisitors();</script>
-
-
 </body>
 
 </html>

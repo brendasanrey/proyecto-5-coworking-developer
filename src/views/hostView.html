@@ -10,32 +10,30 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
         crossorigin="anonymous">
     <link rel="stylesheet" href="../css/style.css">
-    <title>Proyecto 5 CoWorking</title>
+    <title>CoWorking Visitors</title>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">CoWorking Visitors</a>
+            <a class="navbar-brand" href="#">CoWorking Visitors | Host View</a>
         </div>
     </nav>
     <div class="container-fluid mt-4 pt-4">
         <div class="row">
-            <div class="col-md-2 mt-4">
+            <div class="col-md-3 mt-4">
                 <div class="list-group">
-                    <button class="list-group-item" onclick="drawListOfVisitors()">Visitantes</button>
-                    <button class="list-group-item" onclick="drawListOfHosts()">Agencias</button>
-                    <button class="list-group-item" onclick="">Empleados</button>
+                    <button class="list-group-item" onclick="">Visitantes pendientes</button>
+                    <button class="list-group-item" onclick="">Historial de visitas</button>
                 </div>
             </div>
-            <div class="col-md-10 mt-4">
+            <div class="col-md-9 mt-4">
                 <table class="table" id="table1">
                     <thead class="thead-dark">
                         <tr class="text-center">
                             <th scope="col">#</th>
                             <th scope="col">Nombre</th>
                             <th scope="col">Email</th>
-                            <th scope="col">Host</th>
                             <th scope="col">Fecha</th>
                             <th scope="col">Satus</th>
                             <th scope="col">Opciones</th>
