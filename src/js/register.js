@@ -10,5 +10,5 @@ document.getElementById('register-user').addEventListener('click', event => {
     visitorRegister(userName, userEmail, userHost);
     document.getElementById('user-name').value = '';
     document.getElementById('user-email').value = '';
-    const userHost = document.getElementById('user-hots').value;
+    document.getElementById('user-hots').value = '';
 })

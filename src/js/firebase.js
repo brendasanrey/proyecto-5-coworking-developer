@@ -23,8 +23,8 @@ window.visitorRegister = (userName, userEmail, userHost) => {
       swal({
         confirmButtonText: 'Aceptar',
         type: 'success',
-        title: 'Visita REgistrada',
-        text: 'Debe esperar a la confirmación'
+        title: 'Su visita fue registrada',
+        text: 'Debe esperar a la confirmación del host'
       })
     })
     .catch(error => {
