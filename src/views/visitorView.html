@@ -15,7 +15,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="mt-2">
-                        <img src="https://dummyimage.com/400x4:3" alt="" class="mx-auto img-fluid d-block">
+                        <img src="https://dummyimage.com/300x4:3" alt="" class="mx-auto img-fluid d-block">
                     </div>
                     <p class="mt-2 text-center">Regitra tus datos</p>
                     <div class="mt-4">
@@ -27,10 +27,15 @@
                             <input type="email" id="user-email" class="form-control" placeholder ="E-mail" >
                         </div>
                         <div class="form-group">
-                                <select  id="user-hots" class="form-control"> 
-                                    <option value="" disabled selected>Elige un Anfitrón</option>
+                                <select  id="user-agency" class="form-control" onchange="getHostList()"> 
+                                    <option value="" disabled selected>Elige una agencia</option>
                                 </select>
-                            </div>
+                        </div>
+                        <div class="form-group">
+                            <select id="user-host" class="form-control">
+                                <option value="" disabled selected>Elige un anfitrón</option>
+                            </select>
+                        </div>
                             <button class="btn btn-warning mx-auto btn-block" id="register-user">Registrar</button>
                     </form>    
                     </div>
@@ -39,9 +44,9 @@
         </div>
     </div>
 </div> 
-<script src="js/firebase.js"></script>
+<script src="../js/firebase.js"></script>
 <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
- <script src="js/register.js"></script>   
+ <script src="../js/register.js"></script>   
 </body>
 </html>
