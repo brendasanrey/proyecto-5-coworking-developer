@@ -105,17 +105,19 @@ window.showUserCard = (userID) =>{
 }
 
 window.drawListOfVisitors = () =>{
-  document.getElementById('table1').style.display = 'block';
-  document.getElementById('table2').style.display = 'none';
-  document.getElementById('table3').style.display = 'none';
-  let db = firebase.firestore();
-  let tableContent = '';
-  let i = 1;
-  db.collection('visitors').orderBy('date', 'desc').get()
-  .then(result =>{
-    result.forEach(visitor =>{
-      const status = drawStatusBadge(visitor.data().status);
-      tableContent += `<tr>
+  firebase.auth().onAuthStateChanged(user => { 
+    if (user) { 
+      document.getElementById('table1').style.display = 'block';
+      document.getElementById('table2').style.display = 'none';
+      document.getElementById('table3').style.display = 'none';
+      let db = firebase.firestore();
+      let tableContent = '';
+      let i = 1;
+      db.collection('visitors').orderBy('date', 'desc').get()
+        .then(result => {
+          result.forEach(visitor => {
+            const status = drawStatusBadge(visitor.data().status);
+            tableContent += `<tr>
         <th scope="row">${i++}</th>
         <td>${visitor.data().userName}</td>
         <td>${visitor.data().userEmail}</td>
@@ -124,13 +126,16 @@ window.drawListOfVisitors = () =>{
         <td>${status}</td>
         <td><button class="no-btn"><span class="badge badge-warning" onclick="showUserCard('${visitor.id}')">Imprimir gafete</span></button></td>
       </tr>`;
-    });
-    document.getElementById('table-content').innerHTML = tableContent;
-  })
-  .catch(error =>{
-    console.log('Error', error);
-  })
-
+          });
+          document.getElementById('table-content').innerHTML = tableContent;
+        })
+        .catch(error => {
+          console.log('Error', error);
+        });
+    }else{
+      location.href = ('AdminLogin.html');
+    }
+  });
 }
 
 window.drawListOfAgencies = () =>{
