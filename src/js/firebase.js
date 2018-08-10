@@ -60,9 +60,16 @@ window.showUserCard = (userID) =>{
   let db = firebase.firestore();
   db.collection('visitors').doc(userID).get()
   .then(result =>{
-    swal({
-      title: `<div class="small-text border-card"><p>Nombre: ${result.data().userName}</p><p>Correo: ${result.data().userEmail}</p><p>Host: ${result.data().userHost}</p><p>Fecha: ${result.data().date}</p></div>`
-    })
+    let content = `<div class="small-text border-card d-none" id="userCard"><p>Nombre: ${result.data().userName}</p><p>Correo: ${result.data().userEmail}</p><p>Host: ${result.data().userHost}</p><p>Fecha: ${result.data().date}</p></div>`;
+
+    document.getElementById('card-gafete').innerHTML = content;
+    let doc = new jsPDF();
+    doc.fromHTML($('#card-gafete').get(0), 20, 20,{
+      'width': 300 });
+    doc.save('gafete.pdf');
+  })
+  .catch(error =>{
+    console.log('Error', error)
   })
 }
 
