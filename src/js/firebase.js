@@ -7,6 +7,8 @@ window.initializeFirebase = () => {
     storageBucket: "proyecto-5-coworking-developer.appspot.com",
     messagingSenderId: "632752209221"
     });
+    console.log('Se ha inicializado la sesion de firebase');
+
 }
 window.visitorRegister = (userName, userEmail, userHost) => {
 let db = firebase.firestore();
@@ -21,13 +23,13 @@ db.collection('visitors').add({
   swal({
     confirmButtonText: 'Aceptar',
     type: 'success',
-    title:'Visita REgistrada',
+    title:'Visita Registrada',
     text:'Debe esperar a la confirmación'
   })
 })
 
 .catch(error => {
-  console.log('Tiene que registrarse primero', error);
+  console.log('Usted tiene que registrarse primero', error);
 }); 
 }
 window.getHostList = () => {
