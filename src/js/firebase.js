@@ -82,16 +82,6 @@ window.drawStatusBadge = (status) => {
   return statusElements;
 }
 
-window.drawNameHost = (hostID) => {
-  let db = firebase.firestore();
-  let hostName = '';
-  db.collection('host').doc(hostID).get()
-    .then(response => {
-      hostName = `${response.data().name}`;
-    })
-  return hostName;
-}
-
 window.showUserCard = (userID) => {
   let db = firebase.firestore();
   db.collection('visitors').doc(userID).get()
@@ -213,7 +203,7 @@ window.addZeroToDate = (digit) => {
   return digit;
 }
 
-window.getRegisterHour = () =>{
+window.getRegisterHour = () => {
   let today = new Date();
   let hour = today.getHours();
   let minutes = today.getMinutes();
@@ -224,4 +214,13 @@ window.getRegisterHour = () =>{
   seconds = addZeroToDate(seconds);
 
   return `${hour}:${minutes}:${seconds}`;
+}
+
+window.signOut = () => {
+  firebase.auth().signOut()
+    .then(element => {
+      location.href('AdminLogin.html');
+    }).catch(error => {
+      console.log('Error al cerrar sesión');
+    });
 }

@@ -35,11 +35,6 @@ btnLogin.addEventListener('click', e =>{
     });
 });
 
-/*btnLogout.addEventListener('click', e => {
-    firebase.auth().signOut();
-
-});*/
-
 //Agregando un identificador del estado del usuario
 firebase.auth().onAuthStateChanged(firebaseUser => {
 if(firebaseUser) {
