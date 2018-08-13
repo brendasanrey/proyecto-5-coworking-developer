@@ -11,7 +11,6 @@ window.initializeFirebase = () => {
 
 window.visitorRegister = (userName, userEmail, userAgency, userHost, userMotive) => {
   let db = firebase.firestore();
-  //const date = firebase.firestore.FieldValue.serverTimestamp();
   const date = getRegisterDate();
   const hour = getRegisterHour();
   db.collection('Co-Workings').doc(userAgency).get()
@@ -31,12 +30,12 @@ window.visitorRegister = (userName, userEmail, userAgency, userHost, userMotive)
           swal({
             confirmButtonText: 'Aceptar',
             type: 'success',
-            title: 'Su visita fue registrada',
-            text: 'Debe esperar a la confirmación del host'
+            title: 'Registro exitoso',
+            text: 'Por favor espero un momento a que su visita sea aprobada'
           })
         })
         .catch(error => {
-          console.log('Tiene que registrarse primero', error);
+          console.log('Error', error)
         });
     })
 }
