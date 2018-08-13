@@ -44,15 +44,20 @@ liderando las siguientes áreas de trabajo:
    * Deben dividirse las funcionalidades entre las dos desarrolladoras.
    * Todas los desarrollos deben incluir pruebas unitarias.
 
-El rol de Product Manager es asumido por Nallely Bravo pero igualmente, las responsabilidades de gestionar las actividades son discutidas con Brenda Sánchez y Michel Velázquez en los dailys diarios (9:00am) además de asignadas y compartidas entre todas las integrantes.
+El rol de Product Manager es asumido por Nallely Bravo pero igualmente, las responsabilidades de gestionar las actividades son discutidas con Brenda Sánchez y Michele Velázquez en los dailys diarios (9:00am) además de asignadas y compartidas entre todas las integrantes.
 
 ### 1.-Planificación inicial
 
-Con respecto al desarrollo de Front END (Aquí le llenan ustedes)
-
+Se dividio el trabajo en pequeñas tareas las cuales se fueron resolviendo en orden de prioridad.
+En principio tenemos que diferenciar a los usuarios que se verán involucrados en el uso del portal de registro.
+Existen 2 usuarios que serán involucrados en el uso de la interfaz el primer usuarios es el recepcionista o el administrador de la entrada del coworking y el otro usuario involucrado es el visitante.  
+Una vez que se han identificado quienes serán los usuarios, se crea la primera estretegìa de planeación, Se tiene que generar un ingreso con autenticación para los recepcionistas o administradores del coworking.
+Además se debe generar la base de datos de las agencias del coworking, así mismo se crea una base de datos para el registro de los visitantes. 
+Como parte importante del desarrollo se busca implementar que el visitante al ingresar sus datos se tome una foto como medida de seguridad y quedará su registro en el dashboasrd del recepcionista, hasta que registre su salida del coworking.
+Otra implementación a la que se pretende es que al llegar al coworking el visitante ingrese sus datos y reciba un email en el que se le invite a pasar a la sala de espera en lo que se autoriza su ingreso a la agencia que visita.
+ 
 ### 2. Detalles sobre la implementación
-
-Con respecto a las dependencias, Frameworks, y más mágias que se vayan a usar.
+Para crear el dashboard de la recepción se uso el servicio de Firebase, para generar la base de datos utilizamos el servicio de Firestore Cloud, se trabajo el servicio de Autenticación de Firebase. Se utilizó Boostrap para la maquetación de la interfaz. Se trabajo el servicio de mensajes de confirmación con EmailJS.
 
 #### Tecnologías:
 
