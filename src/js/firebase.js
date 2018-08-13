@@ -14,49 +14,51 @@ window.visitorSearch = (userEmail) => {
   let cont = 0;
   let result = '';
   db.collection('visitors').get()
-  .then(response =>{
-    response.forEach(visitor =>{
-      if(visitor.data().userEmail === userEmail){
-        cont++;
-        result = `<div class="card">
+    .then(response => {
+      response.forEach(visitor => {
+        if (visitor.data().userEmail === userEmail) {
+          cont++;
+          result = `<div class="card">
                         <div class="card-body">
                             <span class="titles">Nombre: ${visitor.data().userName}</span>
                             <p class="mb-0 text-right little-text">¿No son tus datos?</p> 
                             <a href="visitorCheckOut.html"><p class="mb-0 text-right little-text">Intenta de nuevo</p></a>
                         </div>
                     </div>`;
+        }
+      })
+      document.getElementById('user-info').innerHTML = result;
+      if (cont === 0) {
+        swal({
+          confirmButtonText: 'Aceptar',
+          type: 'error',
+          title: 'No se encontro ningun registro',
+          text: 'Por favor verifica tus datos y vuelve a intentarlo.'
+        })
+      } else {
+        document.getElementById('register-user').disabled = false;
       }
     })
-    document.getElementById('user-info').innerHTML = result;
-    if(cont === 0){
-      swal({
-        confirmButtonText: 'Aceptar',
-        type: 'error',
-        title: 'No se encontro ningun registro',
-        text: 'Por favor verifica tus datos y vuelve a intentarlo.'
-      })
-    }else{
-      document.getElementById('register-user').disabled = false;
-    }
-  })
 }
 
-window.visitorCheckOut = (userEmail) =>{
+window.visitorCheckOut = (userEmail) => {
   let db = firebase.firestore();
   db.collection('visitors').get()
-  .then(response =>{
-    response.forEach(visitor =>{
-      if(visitor.data().userEmail === userEmail){
-        const userID = visitor.id;
-        db.collection('visitors').doc(userID).update({
-          status: 3
-        })
-        .then(()=>{
-          location.href = ('splash.html');
-        })
-      }
+    .then(response => {
+      const hour = getRegisterHour();
+      response.forEach(visitor => {
+        if (visitor.data().userEmail === userEmail) {
+          const userID = visitor.id;
+          db.collection('visitors').doc(userID).update({
+            status: 3,
+            departureTime: hour
+          })
+            .then(() => {
+              location.href = ('splash.html');
+            })
+        }
+      })
     })
-  }) 
 }
 
 window.visitorRegister = (userName, userEmail, userAgency, userHost, userMotive) => {
@@ -74,6 +76,7 @@ window.visitorRegister = (userName, userEmail, userAgency, userHost, userMotive)
         userMotive: userMotive,
         date: date,
         hour: hour,
+        departureTime: '00:00',
         status: 0
       })
         .then(result => {
@@ -140,12 +143,18 @@ window.changeVisitorStatus = (userID, option) => {
 
 window.drawStatusBadge = (status, userID) => {
   let statusElements = '';
-  if (status === 1) {
-    statusElements = '<span class="badge badge-success"><i class="fas fa-check-circle"></i> Aprobado</span>';
-  } else if (status === 0) {
-    statusElements = `<span class="badge badge-primary mr-1"><i class="fas fa-clock"></i> En espera</span><span class="mr-1 badge badge-success"><button class="no-btn white-text" title="Aprovar visita" onclick="changeVisitorStatus('${userID}',1)"><i class="fas fa-check-circle"></i></button></span><span class="badge badge-danger"><button class="no-btn white-text" title="Rechazar visita" onclick="changeVisitorStatus('${userID}',2)"><i class="fas fa-times-circle"></i></button></span>`;
-  } else {
-    statusElements = '<span class="badge badge-danger"><i class="fas fa-times-circle"></i> Rechazado</span>';
+  if (status === 0) {
+    statusElements = `<p class="mb-0"><span class="mr-1 badge badge-success"><button class="no-btn white-text" title="Aceptar" onclick="changeVisitorStatus('${userID}',1)"><i class="fas fa-check-circle"></i>  Aceptar</button></span></p><p class="mt-0"><span class="badge badge-danger"><button class="no-btn white-text" title="Denegar" onclick="changeVisitorStatus('${userID}',2)"><i class="fas fa-times-circle"></i> Denegar</button></span></p>`;
+  } else if (status === 1) {
+    statusElements = `<span class="badge badge-primary"><i class="fas fa-clock"></i> Pendiente</span>`;
+  } else if (status === 2) {
+    statusElements = '<span> N/A</span>';
+  }else{
+    let db = firebase.firestore();
+    db.collection('visitors').doc(userID).get()
+    .then(response =>{
+      document.getElementById(`departure-time${userID}`).innerHTML = `<span>${response.data().departureTime}</span>`;
+    })
   }
   return statusElements;
 }
@@ -186,40 +195,39 @@ window.drawListOfVisitors = () => {
       db.collection('visitors').orderBy('hour', 'desc').get()
         .then(result => {
           result.forEach(visitor => {
-            if(visitor.data().date === todayDate){
+            if (visitor.data().date === todayDate) {
               todayVisitors++;
-              if(visitor.data().userMotive === 'Personal'){
+              if (visitor.data().userMotive === 'Personal') {
                 personalMotive++;
               }
-              if (visitor.data().userMotive === 'Clase'){
+              if (visitor.data().userMotive === 'Clase') {
                 classMotive++;
               }
-              if (visitor.data().userMotive === 'Reunión'){
+              if (visitor.data().userMotive === 'Reunión') {
                 meetingMotive++;
               }
-              if (visitor.data().userMotive === 'Entrevista'){
+              if (visitor.data().userMotive === 'Entrevista') {
                 interviewMotive++;
               }
               const status = drawStatusBadge(visitor.data().status, visitor.id);
               tableContent += `<tr>
               <th scope="row">${i++}</th>
-              <td>${visitor.data().userName}</td>
-              <td>${visitor.data().userEmail}</td>
-              <td>${visitor.data().userAgencyName}</td>
-              <td>${visitor.data().date}</td>
-              <td>${visitor.data().hour}</td>
-              <td>${visitor.data().userMotive}</td>
-              <td class="text-center">${status}</td>
+              <td class="text-center"><p class="mb-0">${visitor.data().userName}</p><p class="mt-0 gray-text">${visitor.data().userEmail}</p></td>
+              <td class="text-center">${visitor.data().userAgencyName}</td>
+              <td class="text-center">${visitor.data().userMotive}</td>
+              <td class="text-center">${visitor.data().date}</td>
+              <td class="text-center">${visitor.data().hour}</td>
+              <td class="text-center" id="departure-time${visitor.id}">${status}</td>
               <td><button title="Imprimir gafete" class="no-btn" onclick="showUserCard('${visitor.id}')"><span class="badge badge-warning"><i class="fas fa-id-card-alt"></i> Imprimir gafete</span></button></td>
             </tr>`;
-            } 
+            }
           });
           document.getElementById('table-content').innerHTML = tableContent;
           document.getElementById('today-visitors').innerHTML = todayVisitors;
           document.getElementById('day-and-month').innerHTML = todayDay;
-          document.getElementById('year').innerHTML = todayDate.slice(6,10);
+          document.getElementById('year').innerHTML = todayDate.slice(6, 10);
           document.getElementById('interview-motive').innerHTML = interviewMotive;
-          document.getElementById('personal-motive').innerHTML  = personalMotive;
+          document.getElementById('personal-motive').innerHTML = personalMotive;
           document.getElementById('meeting-motive').innerHTML = meetingMotive;
           document.getElementById('class-motive').innerHTML = classMotive;
 
@@ -314,12 +322,12 @@ window.getRegisterHour = () => {
   return `${hour}:${minutes}:${seconds}`;
 }
 
-window.getDay = (todayDate) =>{
-  const day = todayDate.slice(0,2);
-  const moth = todayDate.slice(3,5);
-  const year = todayDate.slice(6,10);
+window.getDay = (todayDate) => {
+  const day = todayDate.slice(0, 2);
+  const moth = todayDate.slice(3, 5);
+  const year = todayDate.slice(6, 10);
   const days = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
-  const moths = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio","Agosto", "Septiembre", "Noviembre", "Diciembre"];
+  const moths = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Noviembre", "Diciembre"];
   const newDay = new Date(moth + ' ' + day + ', ' + year + ' 12:00:00');
   const newDate = `${days[newDay.getUTCDay()]} ${day} de ${moths[newDay.getMonth()]}`;
   return newDate;
