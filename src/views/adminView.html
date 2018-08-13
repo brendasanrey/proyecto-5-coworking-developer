@@ -10,40 +10,145 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
         crossorigin="anonymous">
     <link rel="stylesheet" href="../css/style.css">
-    <title>Proyecto 5 CoWorking</title>
+    <title>CoWorking Visitors</title>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">CoWorking Visitors</a>
+            <a class="navbar-brand" href="#">COW Develop</a>
         </div>
     </nav>
     <div class="container-fluid mt-4 pt-4">
         <div class="row">
             <div class="col-md-2 mt-4">
                 <div class="list-group">
-                    <button class="list-group-item" onclick="drawListOfVisitors()" >Visitantes</button>
-                    <button class="list-group-item" onclick="drawListOfHosts()">Agencias</button>
-                    <button class="list-group-item" onclick="">Empleados</button>
+                    <button class="list-group-item" onclick="drawListOfVisitors()" >
+                        <div class="row">
+                            <div class="col-12">
+                                <i class="fas fa-child icons-size"></i>
+                            </div>
+                            <div class="col-12 small-text">
+                                 Visitantes
+                            </div>
+                        </div>
+                    </button>
+                    <button class="list-group-item" onclick="drawListOfAgencies()">
+                        <div class="row">
+                            <div class="col-12">
+                                <i class="fas fa-chart-line icons-size"></i>
+                            </div>
+                            <div class="col-12 small-text">
+                                Estadísticas
+                            </div>
+                        </div>
+                    </button>
+                    <button class="list-group-item" onclick="drawListOfHosts()">
+                        <div class="row">
+                            <div class="col-12">
+                                <i class="fas fa-space-shuttle icons-size fa-rotate-270"></i>
+                            </div>
+                            <div class="col-12 small-text">
+                                Empresas
+                            </div>
+                        </div>
+                    </button>
+                    <button class="list-group-item">
+                        <div class="row">
+                            <div class="col-12">
+                                <i class="fas fa-user-astronaut icons-size"></i>
+                            </div>
+                            <div class="col-12 small-text">
+                                Afitriones
+                            </div>
+                        </div>
+                    </button>
+                    <button class="list-group-item" onclick="signOut()">
+                        <div class="row">
+                            <div class="col-12">
+                                <i class="fas fa-sign-out-alt icons-size"></i>
+                            </div>
+                            <div class="col-12 small-text">
+                                Salir
+                            </div>
+                        </div>
+                    </button>
                 </div>
             </div>
             <div class="col-md-10 mt-4">
-                <table class="table" id="table1">
-                    <thead class="thead-dark">
-                        <tr class="text-center">
-                            <th scope="col">#</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Agencia</th>
-                            <th scope="col">Fecha</th>
-                            <th scope="col">Satus</th>
-                            <th scope="col">Opciones</th>
-                        </tr>
-                    </thead>
-                    <tbody id="table-content"> 
-                    </tbody>
-                </table>
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="text text-center">Visitantes</p>
+                                <p class="titles text-center">15</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="text text-center">2018</p>
+                                <div class="row">
+                                    <div class="col-1"><button class="no-btn"><i class="fas fa-angle-double-left"></i></button></div>
+                                    <div class="col-10"><p class="titles text-center">Lunes 13 de Agosto</p></div>
+                                    <div class="col-1"><button class="no-btn"><i class="fas fa-angle-double-right"></i></button></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <p class="small-text mb-1">Entrevista</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="small-text mb-1">3</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="small-text mb-1">Personal</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="small-text mb-1">3</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="small-text mb-1">Reunión</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="small-text mb-1">6</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="small-text mb-1">Clase</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="small-text mb-1">4</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <table class="table small-text" id="table1">
+                            <thead class="thead-dark">
+                                <tr class="text-center">
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Agencia</th>
+                                    <th scope="col">Fecha</th>
+                                    <th scope="col">Hora</th>
+                                    <th scope="col">Motivo</th>
+                                    <th scope="col">Satus</th>
+                                    <th scope="col">Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-content">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
                 <table class="table" id="table2">
                     <thead class="thead-dark">
                         <tr class="text-center">
@@ -54,6 +159,18 @@
                         </tr>
                     </thead>
                     <tbody id="table-content2">
+                    </tbody>
+                </table>
+                <table class="table" id="table3">
+                    <thead class="thead-dark">
+                        <tr class="text-center">
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Agencia</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-content3">
                     </tbody>
                 </table>
                 <div id="card-gafete"></div>
@@ -72,8 +189,6 @@
     <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
     <script src="../js/firebase.js"></script>
     <script> initializeFirebase(); drawListOfVisitors();</script>
-
-
 </body>
 
 </html>

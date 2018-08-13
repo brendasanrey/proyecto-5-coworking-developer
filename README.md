@@ -101,10 +101,19 @@ Explicar las Funciones implementadas.
 
 ### 4. Diseño User Experience
 
-* Wireframes baja fidelidad
-* Testeo de flujo
-* Flujo final
-* Mockups de alta fidelidad
-* Arquitectura del sitio.
-* Pruebas de usabilidad con prototipo de alta fidelidad.
-* Insights de las pruebas de usabilidad.
+#### Wireframes baja fidelidad
+
+
+
+#### Wireframes de media fidelidad
+
+[Arquitectura Dashboard](https://raw.githubusercontent.com/SakuraBravo/proyecto-5-coworking-developer/master/src/img/arqDashMedia.jpg)
+
+#### Testeo de flujo.
+
+#### Flujo final
+
+#### Mockups de alta fidelidad
+#### Arquitectura del sitio.
+#### Pruebas de usabilidad con prototipo de alta fidelidad.
+#### Insights de las pruebas de usabilidad.
