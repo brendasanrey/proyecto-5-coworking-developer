@@ -99,7 +99,6 @@ Explicar las Funciones implementadas.
 #### Wireframes baja fidelidad
 
 
-
 #### Wireframes de media fidelidad
 
 [Arquitectura Dashboard](https://raw.githubusercontent.com/SakuraBravo/proyecto-5-coworking-developer/master/src/img/arqDashMedia.jpg)
