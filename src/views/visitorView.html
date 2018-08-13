@@ -21,19 +21,28 @@
                     <div class="mt-4">
                     <form>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="user-name" placeholder="Nombre">  
+                            <input type="text" class="form-control" id="user-name" placeholder="Nombre" required>  
                         </div>
                         <div class="form-group">
-                            <input type="email" id="user-email" class="form-control" placeholder ="E-mail" >
+                            <input type="email" id="user-email" class="form-control" placeholder ="E-mail" required>
                         </div>
                         <div class="form-group">
-                                <select  id="user-agency" class="form-control" onchange="getHostList()"> 
+                                <select  id="user-agency" class="form-control" onchange="getHostList()" required> 
                                     <option value="" disabled selected>Elige una agencia</option>
                                 </select>
                         </div>
                         <div class="form-group">
-                            <select id="user-host" class="form-control">
+                            <select id="user-host" class="form-control" required>
                                 <option value="" disabled selected>Elige un anfitrón</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select id="user-motive" class="form-control" required>
+                                <option value="" disabled selected>Motivo de la visita</option>
+                                <option value="Entrevista">Entrevista</option>
+                                <option value="Clase">Clase</option>
+                                <option value="Reunión">Reunión</option>
+                                <option value="Personal">Personal</option>
                             </select>
                         </div>
                             <button class="btn btn-warning mx-auto btn-block" id="register-user">Registrar</button>

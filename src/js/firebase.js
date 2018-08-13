@@ -9,7 +9,7 @@ window.initializeFirebase = () => {
   });
 }
 
-window.visitorRegister = (userName, userEmail, userAgency, userHost) => {
+window.visitorRegister = (userName, userEmail, userAgency, userHost, userMotive) => {
   let db = firebase.firestore();
   const date = firebase.firestore.FieldValue.serverTimestamp();
   db.collection('Co-Workings').doc(userAgency).get()
@@ -20,6 +20,7 @@ window.visitorRegister = (userName, userEmail, userAgency, userHost) => {
       userAgencyID: userAgency,
       userAgencyName: result.data().Agencia,
       userHost: userHost,
+      userMotive: userMotive,
       date: date,
       status: 0
     })
@@ -123,6 +124,7 @@ window.drawListOfVisitors = () =>{
         <td>${visitor.data().userEmail}</td>
         <td>${visitor.data().userAgencyName}</td>
         <td>${visitor.data().date}</td>
+        <td>${visitor.data().userMotive}</td>
         <td>${status}</td>
         <td><button class="no-btn"><span class="badge badge-warning" onclick="showUserCard('${visitor.id}')">Imprimir gafete</span></button></td>
       </tr>`;
