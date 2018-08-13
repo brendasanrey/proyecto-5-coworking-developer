@@ -32,6 +32,8 @@ window.visitorRegister = (userName, userEmail, userAgency, userHost, userMotive)
             type: 'success',
             title: 'Registro exitoso',
             text: 'Por favor espero un momento a que su visita sea aprobada'
+          }).then((result) => {
+            location.href = ('../index.html');
           })
         })
         .catch(error => {

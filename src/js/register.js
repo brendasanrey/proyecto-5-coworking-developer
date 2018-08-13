@@ -17,9 +17,4 @@ document.getElementById('register-user').addEventListener('click', event => {
         })
     }
     visitorRegister(userName, userEmail, userAgency, userHost, userMotive);
-    document.getElementById('user-name').value = '';
-    document.getElementById('user-email').value = '';
-    document.getElementById('user-agency').value = '';
-    document.getElementById('user-host').value = '';
-    document.getElementById('user-motive').value = '';
 })
