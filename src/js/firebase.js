@@ -103,7 +103,7 @@ window.showUserCard = (userID) => {
   let db = firebase.firestore();
   db.collection('visitors').doc(userID).get()
     .then(result => {
-      let content = `<div class="small-text border-card d-none" id="userCard"><p>Nombre: ${result.data().userName}</p><p>Correo: ${result.data().userEmail}</p><p>Host: ${result.data().userHost}</p><p>Fecha: ${result.data().date}</p></div>`;
+      let content = `<div class="small-text border-card d-none" id="userCard"><p>Nombre: ${result.data().userName}</p><p>Correo: ${result.data().userEmail}</p><p>Host: ${result.data().userAgencyName}</p><p>Fecha: ${result.data().date}</p></div>`;
       document.getElementById('card-gafete').innerHTML = content;
       let doc = new jsPDF();
       doc.fromHTML($('#card-gafete').get(0), 20, 20, {
@@ -138,7 +138,7 @@ window.drawListOfVisitors = () => {
         <td>${visitor.data().hour}</td>
         <td>${visitor.data().userMotive}</td>
         <td class="text-center">${status}</td>
-        <td><button title="Imprimir gafete" class="no-btn"><span class="badge badge-warning" onclick="showUserCard('${visitor.id}')"><i class="fas fa-id-card-alt"></i> Imprimir gafete</span></button></td>
+        <td><button title="Imprimir gafete" class="no-btn" onclick="showUserCard('${visitor.id}')"><span class="badge badge-warning"><i class="fas fa-id-card-alt"></i> Imprimir gafete</span></button></td>
       </tr>`;
           });
           document.getElementById('table-content').innerHTML = tableContent;
