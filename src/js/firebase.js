@@ -9,6 +9,56 @@ window.initializeFirebase = () => {
   });
 }
 
+window.visitorSearch = (userEmail) => {
+  let db = firebase.firestore();
+  let cont = 0;
+  let result = '';
+  db.collection('visitors').get()
+  .then(response =>{
+    response.forEach(visitor =>{
+      if(visitor.data().userEmail === userEmail){
+        cont++;
+        result = `<div class="card">
+                        <div class="card-body">
+                            <span class="titles">Nombre: ${visitor.data().userName}</span>
+                            <p class="mb-0 text-right little-text">¿No son tus datos?</p> 
+                            <a href="visitorCheckOut.html"><p class="mb-0 text-right little-text">Intenta de nuevo</p></a>
+                        </div>
+                    </div>`;
+      }
+    })
+    document.getElementById('user-info').innerHTML = result;
+    if(cont === 0){
+      swal({
+        confirmButtonText: 'Aceptar',
+        type: 'error',
+        title: 'No se encontro ningun registro',
+        text: 'Por favor verifica tus datos y vuelve a intentarlo.'
+      })
+    }else{
+      document.getElementById('register-user').disabled = false;
+    }
+  })
+}
+
+window.visitorCheckOut = (userEmail) =>{
+  let db = firebase.firestore();
+  db.collection('visitors').get()
+  .then(response =>{
+    response.forEach(visitor =>{
+      if(visitor.data().userEmail === userEmail){
+        const userID = visitor.id;
+        db.collection('visitors').doc(userID).update({
+          status: 3
+        })
+        .then(()=>{
+          location.href = ('splash.html');
+        })
+      }
+    })
+  }) 
+}
+
 window.visitorRegister = (userName, userEmail, userAgency, userHost, userMotive) => {
   let db = firebase.firestore();
   const date = getRegisterDate();

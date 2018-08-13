@@ -7,6 +7,10 @@
     font-size: 15px;
 }
 
+.little-text{
+    font-size: 12px;
+}
+
 .border-card{
     padding: 20px;
     border: 1px solid #000;
