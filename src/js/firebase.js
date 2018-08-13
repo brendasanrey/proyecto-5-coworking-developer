@@ -11,31 +11,34 @@ window.initializeFirebase = () => {
 
 window.visitorRegister = (userName, userEmail, userAgency, userHost, userMotive) => {
   let db = firebase.firestore();
-  const date = firebase.firestore.FieldValue.serverTimestamp();
+  //const date = firebase.firestore.FieldValue.serverTimestamp();
+  const date = getRegisterDate();
+  const hour = getRegisterHour();
   db.collection('Co-Workings').doc(userAgency).get()
-  .then(result =>{
-    db.collection('visitors').add({
-      userName: userName,
-      userEmail: userEmail,
-      userAgencyID: userAgency,
-      userAgencyName: result.data().Agencia,
-      userHost: userHost,
-      userMotive: userMotive,
-      date: date,
-      status: 0
-    })
-      .then(result => {
-        swal({
-          confirmButtonText: 'Aceptar',
-          type: 'success',
-          title: 'Su visita fue registrada',
-          text: 'Debe esperar a la confirmación del host'
-        })
+    .then(result => {
+      db.collection('visitors').add({
+        userName: userName,
+        userEmail: userEmail,
+        userAgencyID: userAgency,
+        userAgencyName: result.data().Agencia,
+        userHost: userHost,
+        userMotive: userMotive,
+        date: date,
+        hour: hour,
+        status: 0
       })
-      .catch(error => {
-        console.log('Tiene que registrarse primero', error);
-      });
-  })  
+        .then(result => {
+          swal({
+            confirmButtonText: 'Aceptar',
+            type: 'success',
+            title: 'Su visita fue registrada',
+            text: 'Debe esperar a la confirmación del host'
+          })
+        })
+        .catch(error => {
+          console.log('Tiene que registrarse primero', error);
+        });
+    })
 }
 
 window.getAgencyList = () => {
@@ -54,11 +57,11 @@ window.getHostList = () => {
   let db = firebase.firestore();
   let hostList = '';
   const agencyID = document.getElementById('user-agency').value;
-  document.getElementById('user-host').innerHTML = '<option value="" disabled selected>Elige un anfitrón</option>'; 
+  document.getElementById('user-host').innerHTML = '<option value="" disabled selected>Elige un anfitrón</option>';
   db.collection('host').orderBy('name', 'asc').get()
     .then(result => {
       result.forEach(host => {
-        if(agencyID === host.data().idAgencia){
+        if (agencyID === host.data().idAgencia) {
           hostList += `<option value = "${host.id}">${host.data().name}</option>`;
         }
       });
@@ -67,47 +70,48 @@ window.getHostList = () => {
 }
 
 
-window.drawStatusBadge = (status) =>{
+window.drawStatusBadge = (status) => {
   let statusElements = '';
-  if(status === 1){
+  if (status === 1) {
     statusElements = '<span class="badge badge-success"><i class="fas fa-check-circle"></i> Aprobado</span>';
-  }else if(status === 0) {
+  } else if (status === 0) {
     statusElements = '<span class="badge badge-primary"><i class="fas fa-clock"></i> En espera</span>';
-  }else{
+  } else {
     statusElements = '<span class="badge badge-danger"><i class="fas fa-times-circle"></i> Rechazado</span>';
   }
   return statusElements;
 }
 
-window.drawNameHost = (hostID) =>{
+window.drawNameHost = (hostID) => {
   let db = firebase.firestore();
   let hostName = '';
   db.collection('host').doc(hostID).get()
     .then(response => {
       hostName = `${response.data().name}`;
     })
-    return hostName;
+  return hostName;
 }
 
-window.showUserCard = (userID) =>{
+window.showUserCard = (userID) => {
   let db = firebase.firestore();
   db.collection('visitors').doc(userID).get()
-  .then(result =>{
-    let content = `<div class="small-text border-card d-none" id="userCard"><p>Nombre: ${result.data().userName}</p><p>Correo: ${result.data().userEmail}</p><p>Host: ${result.data().userHost}</p><p>Fecha: ${result.data().date}</p></div>`;
-    document.getElementById('card-gafete').innerHTML = content;
-    let doc = new jsPDF();
-    doc.fromHTML($('#card-gafete').get(0), 20, 20,{
-      'width': 300 });
-    doc.save('gafete.pdf');
-  })
-  .catch(error =>{
-    console.log('Error', error)
-  })
+    .then(result => {
+      let content = `<div class="small-text border-card d-none" id="userCard"><p>Nombre: ${result.data().userName}</p><p>Correo: ${result.data().userEmail}</p><p>Host: ${result.data().userHost}</p><p>Fecha: ${result.data().date}</p></div>`;
+      document.getElementById('card-gafete').innerHTML = content;
+      let doc = new jsPDF();
+      doc.fromHTML($('#card-gafete').get(0), 20, 20, {
+        'width': 300
+      });
+      doc.save('gafete.pdf');
+    })
+    .catch(error => {
+      console.log('Error', error)
+    })
 }
 
-window.drawListOfVisitors = () =>{
-  firebase.auth().onAuthStateChanged(user => { 
-    if (user) { 
+window.drawListOfVisitors = () => {
+  firebase.auth().onAuthStateChanged(user => {
+    if (user) {
       document.getElementById('table1').style.display = 'block';
       document.getElementById('table2').style.display = 'none';
       document.getElementById('table3').style.display = 'none';
@@ -124,6 +128,7 @@ window.drawListOfVisitors = () =>{
         <td>${visitor.data().userEmail}</td>
         <td>${visitor.data().userAgencyName}</td>
         <td>${visitor.data().date}</td>
+        <td>${visitor.data().hour}</td>
         <td>${visitor.data().userMotive}</td>
         <td>${status}</td>
         <td><button class="no-btn"><span class="badge badge-warning" onclick="showUserCard('${visitor.id}')">Imprimir gafete</span></button></td>
@@ -134,13 +139,13 @@ window.drawListOfVisitors = () =>{
         .catch(error => {
           console.log('Error', error);
         });
-    }else{
+    } else {
       location.href = ('AdminLogin.html');
     }
   });
 }
 
-window.drawListOfAgencies = () =>{
+window.drawListOfAgencies = () => {
   document.getElementById('table1').style.display = 'none';
   document.getElementById('table2').style.display = 'block';
   document.getElementById('table3').style.display = 'none';
@@ -164,7 +169,7 @@ window.drawListOfAgencies = () =>{
     })
 }
 
-window.drawListOfHosts = () =>{
+window.drawListOfHosts = () => {
   document.getElementById('table1').style.display = 'none';
   document.getElementById('table2').style.display = 'none';
   document.getElementById('table3').style.display = 'block';
@@ -187,4 +192,36 @@ window.drawListOfHosts = () =>{
       console.log('Error', error);
     })
 
+}
+
+window.getRegisterDate = () => {
+  let today = new Date();
+  let day = today.getDate();
+  let month = today.getMonth() + 1;
+  let year = today.getFullYear();
+
+  day = addZeroToDate(day);
+  month = addZeroToDate(month);
+
+  return `${day}/${month}/${year}`;
+}
+
+window.addZeroToDate = (digit) => {
+  if (digit < 10) {
+    digit = `0${digit}`;
+  }
+  return digit;
+}
+
+window.getRegisterHour = () =>{
+  let today = new Date();
+  let hour = today.getHours();
+  let minutes = today.getMinutes();
+  let seconds = today.getSeconds();
+
+  hour = addZeroToDate(hour);
+  minutes = addZeroToDate(minutes);
+  seconds = addZeroToDate(seconds);
+
+  return `${hour}:${minutes}:${seconds}`;
 }
