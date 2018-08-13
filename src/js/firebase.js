@@ -176,23 +176,33 @@ window.drawListOfVisitors = () => {
       let db = firebase.firestore();
       let tableContent = '';
       let i = 1;
+      const todayDate = getRegisterDate();
+      const todayDay = getDay(todayDate);
+      let todayVisitors = 0;
       db.collection('visitors').orderBy('hour', 'desc').get()
         .then(result => {
           result.forEach(visitor => {
-            const status = drawStatusBadge(visitor.data().status, visitor.id);
-            tableContent += `<tr>
-        <th scope="row">${i++}</th>
-        <td>${visitor.data().userName}</td>
-        <td>${visitor.data().userEmail}</td>
-        <td>${visitor.data().userAgencyName}</td>
-        <td>${visitor.data().date}</td>
-        <td>${visitor.data().hour}</td>
-        <td>${visitor.data().userMotive}</td>
-        <td class="text-center">${status}</td>
-        <td><button title="Imprimir gafete" class="no-btn" onclick="showUserCard('${visitor.id}')"><span class="badge badge-warning"><i class="fas fa-id-card-alt"></i> Imprimir gafete</span></button></td>
-      </tr>`;
+            if(visitor.data().date === todayDate){
+              todayVisitors++;
+              const status = drawStatusBadge(visitor.data().status, visitor.id);
+              tableContent += `<tr>
+              <th scope="row">${i++}</th>
+              <td>${visitor.data().userName}</td>
+              <td>${visitor.data().userEmail}</td>
+              <td>${visitor.data().userAgencyName}</td>
+              <td>${visitor.data().date}</td>
+              <td>${visitor.data().hour}</td>
+              <td>${visitor.data().userMotive}</td>
+              <td class="text-center">${status}</td>
+              <td><button title="Imprimir gafete" class="no-btn" onclick="showUserCard('${visitor.id}')"><span class="badge badge-warning"><i class="fas fa-id-card-alt"></i> Imprimir gafete</span></button></td>
+            </tr>`;
+            } 
           });
           document.getElementById('table-content').innerHTML = tableContent;
+          document.getElementById('today-visitors').innerHTML = todayVisitors;
+          document.getElementById('day-and-month').innerHTML = todayDay;
+          document.getElementById('year').innerHTML = todayDate.slice(6,10);
+
         })
         .catch(error => {
           console.log('Error', error);
@@ -282,6 +292,17 @@ window.getRegisterHour = () => {
   seconds = addZeroToDate(seconds);
 
   return `${hour}:${minutes}:${seconds}`;
+}
+
+window.getDay = (todayDate) =>{
+  const day = todayDate.slice(0,2);
+  const moth = todayDate.slice(3,5);
+  const year = todayDate.slice(6,10);
+  const days = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sabádo"];
+  const moths = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio","Agosto", "Septiembre", "Noviembre", "Diciembre"];
+  const newDay = new Date(moth + ' ' + day + ', ' + year + ' 12:00:00');
+  const newDate = `${days[newDay.getUTCDay()]} ${day} de ${moths[newDay.getMonth()]}`;
+  return newDate;
 }
 
 window.signOut = () => {
