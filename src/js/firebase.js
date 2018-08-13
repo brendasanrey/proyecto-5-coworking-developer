@@ -179,11 +179,27 @@ window.drawListOfVisitors = () => {
       const todayDate = getRegisterDate();
       const todayDay = getDay(todayDate);
       let todayVisitors = 0;
+      let interviewMotive = 0;
+      let classMotive = 0;
+      let personalMotive = 0;
+      let meetingMotive = 0;
       db.collection('visitors').orderBy('hour', 'desc').get()
         .then(result => {
           result.forEach(visitor => {
             if(visitor.data().date === todayDate){
               todayVisitors++;
+              if(visitor.data().userMotive === 'Personal'){
+                personalMotive++;
+              }
+              if (visitor.data().userMotive === 'Clase'){
+                classMotive++;
+              }
+              if (visitor.data().userMotive === 'Reunión'){
+                meetingMotive++;
+              }
+              if (visitor.data().userMotive === 'Entrevista'){
+                interviewMotive++;
+              }
               const status = drawStatusBadge(visitor.data().status, visitor.id);
               tableContent += `<tr>
               <th scope="row">${i++}</th>
@@ -202,6 +218,10 @@ window.drawListOfVisitors = () => {
           document.getElementById('today-visitors').innerHTML = todayVisitors;
           document.getElementById('day-and-month').innerHTML = todayDay;
           document.getElementById('year').innerHTML = todayDate.slice(6,10);
+          document.getElementById('interview-motive').innerHTML = interviewMotive;
+          document.getElementById('personal-motive').innerHTML  = personalMotive;
+          document.getElementById('meeting-motive').innerHTML = meetingMotive;
+          document.getElementById('class-motive').innerHTML = classMotive;
 
         })
         .catch(error => {
@@ -298,7 +318,7 @@ window.getDay = (todayDate) =>{
   const day = todayDate.slice(0,2);
   const moth = todayDate.slice(3,5);
   const year = todayDate.slice(6,10);
-  const days = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sabádo"];
+  const days = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
   const moths = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio","Agosto", "Septiembre", "Noviembre", "Diciembre"];
   const newDay = new Date(moth + ' ' + day + ', ' + year + ' 12:00:00');
   const newDate = `${days[newDay.getUTCDay()]} ${day} de ${moths[newDay.getMonth()]}`;
