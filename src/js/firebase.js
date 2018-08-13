@@ -74,17 +74,17 @@ window.changeVisitorStatus = (userID, option) => {
   db.collection('visitors').doc(userID).update({
     status: option
   })
-  .then(response =>{
-    swal({
-      confirmButtonText: 'Aceptar',
-      type: 'success',
-      title: 'El status de la visita fue cambiado',
-      text: 'Confirme al visitante el status de su registro'
+    .then(() => {
+      swal({
+        confirmButtonText: 'Aceptar',
+        type: 'success',
+        title: 'El status de la visita fue cambiado',
+        text: 'Confirme al visitante el status de su registro'
+      })
+      drawListOfVisitors();
+    }).cacth(error => {
+      console.log('Error', error);
     })
-    drawListOfVisitors();
-  }).cacth(error =>{
-    console.log('Error', error);
-  })
 }
 
 window.drawStatusBadge = (status, userID) => {
@@ -125,7 +125,7 @@ window.drawListOfVisitors = () => {
       let db = firebase.firestore();
       let tableContent = '';
       let i = 1;
-      db.collection('visitors').orderBy('date', 'desc').get()
+      db.collection('visitors').orderBy('hour', 'desc').get()
         .then(result => {
           result.forEach(visitor => {
             const status = drawStatusBadge(visitor.data().status, visitor.id);
