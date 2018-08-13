@@ -69,13 +69,30 @@ window.getHostList = () => {
     })
 }
 
+window.changeVisitorStatus = (userID, option) => {
+  let db = firebase.firestore();
+  db.collection('visitors').doc(userID).update({
+    status: option
+  })
+  .then(response =>{
+    swal({
+      confirmButtonText: 'Aceptar',
+      type: 'success',
+      title: 'El status de la visita fue cambiado',
+      text: 'Confirme al visitante el status de su registro'
+    })
+    drawListOfVisitors();
+  }).cacth(error =>{
+    console.log('Error', error);
+  })
+}
 
-window.drawStatusBadge = (status) => {
+window.drawStatusBadge = (status, userID) => {
   let statusElements = '';
   if (status === 1) {
     statusElements = '<span class="badge badge-success"><i class="fas fa-check-circle"></i> Aprobado</span>';
   } else if (status === 0) {
-    statusElements = '<span class="badge badge-primary"><i class="fas fa-clock"></i> En espera</span>';
+    statusElements = `<span class="badge badge-primary mr-1"><i class="fas fa-clock"></i> En espera</span><span class="mr-1 badge badge-success"><button class="no-btn white-text" title="Aprovar visita" onclick="changeVisitorStatus('${userID}',1)"><i class="fas fa-check-circle"></i></button></span><span class="badge badge-danger"><button class="no-btn white-text" title="Rechazar visita" onclick="changeVisitorStatus('${userID}',2)"><i class="fas fa-times-circle"></i></button></span>`;
   } else {
     statusElements = '<span class="badge badge-danger"><i class="fas fa-times-circle"></i> Rechazado</span>';
   }
@@ -111,7 +128,7 @@ window.drawListOfVisitors = () => {
       db.collection('visitors').orderBy('date', 'desc').get()
         .then(result => {
           result.forEach(visitor => {
-            const status = drawStatusBadge(visitor.data().status);
+            const status = drawStatusBadge(visitor.data().status, visitor.id);
             tableContent += `<tr>
         <th scope="row">${i++}</th>
         <td>${visitor.data().userName}</td>
@@ -120,8 +137,8 @@ window.drawListOfVisitors = () => {
         <td>${visitor.data().date}</td>
         <td>${visitor.data().hour}</td>
         <td>${visitor.data().userMotive}</td>
-        <td>${status}</td>
-        <td><button class="no-btn"><span class="badge badge-warning" onclick="showUserCard('${visitor.id}')">Imprimir gafete</span></button></td>
+        <td class="text-center">${status}</td>
+        <td><button title="Imprimir gafete" class="no-btn"><span class="badge badge-warning" onclick="showUserCard('${visitor.id}')"><i class="fas fa-id-card-alt"></i> Imprimir gafete</span></button></td>
       </tr>`;
           });
           document.getElementById('table-content').innerHTML = tableContent;
