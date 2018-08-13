@@ -44,7 +44,3 @@ if(firebaseUser) {
     console.log('Not Logged In');
 }
 });
-
-
-
-

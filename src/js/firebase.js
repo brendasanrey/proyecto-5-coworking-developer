@@ -236,7 +236,7 @@ window.drawListOfVisitors = () => {
           console.log('Error', error);
         });
     } else {
-      location.href = ('adminLogin.html');
+      location.href = ('AdminLogin.html');
     }
   });
 }
@@ -336,7 +336,7 @@ window.getDay = (todayDate) => {
 window.signOut = () => {
   firebase.auth().signOut()
     .then(element => {
-      location.href('adminLogin.html');
+      location.href('AdminLogin.html');
     }).catch(error => {
       console.log('Error al cerrar sesión');
     });
