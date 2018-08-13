@@ -15,3 +15,13 @@
 .white-text{
     color: #ffffff;
 }
+
+.titles{
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.5em;
+}
+
+.text{
+   font-family: 'Raleway', sans-serif; 
+    font-size: 1.2em;
+}
