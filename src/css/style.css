@@ -1,14 +1,17 @@
 .no-btn{
     background-color: inherit;
     border: none;
+    cursor: pointer;
 }
 
 .small-text{
-    font-size: 15px;
+    font-size: 14px;
+    font-family: 'Raleway', sans-serif; 
 }
 
 .little-text{
     font-size: 12px;
+    font-family: 'Raleway', sans-serif; 
 }
 
 .border-card{
@@ -28,4 +31,8 @@
 .text{
    font-family: 'Raleway', sans-serif; 
     font-size: 1.2em;
+}
+
+.icons-size{
+    font-size: 1.5em;
 }
