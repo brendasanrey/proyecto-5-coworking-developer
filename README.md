@@ -189,11 +189,12 @@ La señora que nos atendió remarcaba mucho el hecho de que es un coworking digi
 
 #### Wireframes de media fidelidad
 
-[Arquitectura Dashboard](https://raw.githubusercontent.com/SakuraBravo/proyecto-5-coworking-developer/master/src/img/arqDashMedia.jpg)
+![Arquitectura Dashboard](https://raw.githubusercontent.com/SakuraBravo/proyecto-5-coworking-developer/master/src/img/arqDashMedia.jpg)
 
 #### Testeo de flujo.
 
 #### Flujo final
+![Arquitectura del sitio Dashboard](https://raw.githubusercontent.com/SakuraBravo/proyecto-5-coworking-developer/master/src/img/arqDashMedia.jpg)
 
 #### Mockups de alta fidelidad
 #### Arquitectura del sitio.
