@@ -47,14 +47,18 @@
 
 img {
     margin-top: 0px; 
-    height: 100px;   
+      
 }
 .centrado{
     margin:10px auto;
-	display:block;
+    display:block;
+    height: 100px; 
 }
 .bienvenido{
     margin:10px auto;
     display:block;
     height: 350px;
+}
+.banner01{
+    width: 100%;
 }
