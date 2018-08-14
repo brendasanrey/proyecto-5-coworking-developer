@@ -1,0 +1,55 @@
+.no-btn{
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+}
+
+.small-text{
+    font-size: 14px;
+    font-family: 'Raleway', sans-serif; 
+}
+
+.little-text{
+    font-size: 12px;
+    font-family: 'Raleway', sans-serif; 
+}
+
+.little-text{
+    font-size: 12px;
+}
+
+.border-card{
+    padding: 20px;
+    border: 1px solid #000;
+}   
+
+.white-text{
+    color: #ffffff;
+}
+
+.titles{
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.5em;
+}
+
+.text{
+   font-family: 'Raleway', sans-serif; 
+    font-size: 1.2em;
+}
+
+.icons-size{
+    font-size: 1.5em;
+}
+
+.gray-text{
+    color: #969292;
+}
+
+img {
+    margin-top: 0px; 
+    height: 350px;   
+}
+.centrado{
+    margin:10px auto;
+	display:block;
+}
