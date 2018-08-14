@@ -52,36 +52,36 @@ Se dividio el trabajo en pequeñas tareas las cuales se fueron resolviendo en or
 En principio tenemos que diferenciar a los usuarios que se verán involucrados en el uso del portal de registro.
 Existen 2 usuarios que serán involucrados en el uso de la interfaz el primer usuarios es el recepcionista o el administrador de la entrada del coworking y el otro usuario involucrado es el visitante.  
 Una vez que se han identificado quienes serán los usuarios, se crea la primera estretegìa de planeación, Se tiene que generar un ingreso con autenticación para los recepcionistas o administradores del coworking.
-Además se debe generar la base de datos de las agencias del coworking, así mismo se crea una base de datos para el registro de los visitantes. 
+Además se debe generar la base de datos de las agencias del coworking, así mismo se crea una base de datos para el registro de los visitantes.
 Como parte importante del desarrollo se busca implementar que el visitante al ingresar sus datos se tome una foto como medida de seguridad y quedará su registro en el dashboasrd del recepcionista, hasta que registre su salida del coworking.
 Otra implementación a la que se pretende es que al llegar al coworking el visitante ingrese sus datos y reciba un email en el que se le invite a pasar a la sala de espera en lo que se autoriza su ingreso a la agencia que visita.
- 
+
 ### 2. Detalles sobre la implementación
 Para crear el dashboard de la recepción se uso el servicio de Firebase, para generar la base de datos utilizamos el servicio de Firestore Cloud, se trabajo el servicio de Autenticación de Firebase. Se utilizó Boostrap para la maquetación de la interfaz. Se trabajo el servicio de mensajes de confirmación con EmailJS.
 
-#### Tecnologías:
+#### Tecnologías
+**Github:** Es una plataforma de desarrollo colaborativo para alojar proyectos utilizando el sistema de control de versiones Git. Es donde se aloja nuestro proyecto y por donde compartimos nuestro trabajo.
 
-*Breve descripción de las tecnologías utilizadas, frameworks (versiones incluidas), compiladores, gestores de tareas, librerías relevantes de javascript. En fin, un pequeño parrafo que con leerlo te puedas hacer una idea de sobre qué estás trabajando.*
+**GitKraken**: Es una potente interfaz gráfica multiplataforma para git. Es muy intuitiva de usar y ayuda a llevar un seguimiento de los repositorios, ver la actividad de todos los integrantes, dar commits, fetch sin necesidad de la consola, entre otras cosas. Decidimos acercarnos a esta interfaz ya que fue una recomendación de un experto en un evento de Git (comentó que en muchos trabajos están utilizando esta interfaz)  al que asistió Brenda, y creemos que es importante tener conocimiento de las diferentes opciones que te solicitarán en un espacio de trabajo.
 
-GitHub:
+**Google Drive:** Creamos una nueva cuenta de correo *cowdevelop@gmail.com* para ligarla con los mensajes que van dirigidos a los visitantes cuando se registran y también para poder utilizar su plataforma de espacio libre en Drive para linkear videos, o audios.
 
-GitKraken:
+**Procesadores de textos:** *Visual Studio, Sublime y Atom.*
+ Utilizamos distintos tipos de procesadores de texto para poder crear la sintaxis de los archivos HTML/JS/CSS, así como la sintaxis markdown para documentar el proceso de desarrollo.
 
-Google Drive:
-
-Procesadores de texto: Visual Studio, Sublime, Atom
-
+**Bootstrap:** Es un framework originalmente creado por Twitter, que permite crear interfaces web con CSS y JavaScript, cuya particularidad es la de adaptar la interfaz del sitio web al tamaño del dispositivo en que se visualice (responsive). Utilizamos bootstrap pues creemos que es el que nos da mayor versatilidad en cuanto a adaptar un diseño y movimientos de los elementos en la interfaz.
 Firebase:
 
-Trello:
+**Trello:** Es una herramienta de gestión de proyectos que hace que la colaboración sea sencilla y dinámica. Nosotras decidimos no utilizar un canvas físico y trasladar todo nuestro sprint planning al trello.
 
-Scketch:
+**Sketch app:** Es una aplicación para la computadora que te permite maquetar tus diseños de interface de una forma similar que Adobe Ilustrator. En este proyecto utilizamos Sketch para el proceso de diseño de las dos interfaces, la del dashboard y la de el registro de visitas.
 
-Adobe Ilustrator:
+**Adobe Ilustrator:** Es un programa de vectores para ilustraciones y maquetaciones que van a digital o a impresión. En este caso se usó el programa como apoyo en el diseño de las interfaces, diseño de imagen corporativa del proyecto y maquetación inicial.
 
-Adobe Photoshop:
+**Adobe Photoshop:** Es un programa de edición de foto e ilustración digital. Utilizamos Photoshop para crear o editar las imágenes necesarias para la implementación de la plataforma, así como para la implementación de los prototipos.
 
-Marvel:
+**Marvel app:** Aplicación wep util para la implementación de prototipos que se pueden compartir por medio de una URL y así facilitar el proceso de testeo. Compatible con la plataforma Sketch app.
+
 
 
 #### Organización:
