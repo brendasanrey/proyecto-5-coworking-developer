@@ -287,7 +287,6 @@ window.drawListOfHosts = () => {
     .catch(error => {
       console.log('Error', error);
     })
-
 }
 
 window.getRegisterDate = () => {
