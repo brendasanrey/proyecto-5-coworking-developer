@@ -431,8 +431,8 @@ window.drawChart1 = () => {
           labels: ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"],
           datasets: [{
             label: "Días con más visitas",
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
+            backgroundColor: '#E52731',
+            borderColor: '#E52731',
             data: [monday, tuesday, wednesday, thursday, friday, saturday, sunday],
           }]
         }
@@ -477,8 +477,8 @@ window.drawChart2 = () => {
           labels: ["8-12hrs", "12-14hrs", "14-18hrs", "18-20hrs"],
           datasets: [{
             label: "Horarios con más visitas",
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
+            backgroundColor: '#E52731',
+            borderColor: '#E52731',
             data: [firstLapseOfTime, secondLapseOfTime, thirdLapseOfTime, fourLapseOfTime],
           }]
         }
