@@ -63,6 +63,14 @@ body{
     width: 60%;
 }
 
+.w-10{
+    width: 10%;
+}
+
+.w-80{
+    width: 80%;
+}
+
 .h-100v{
     height: 100vh;
 }
