@@ -194,7 +194,7 @@ La señora que nos atendió remarcaba mucho el hecho de que es un coworking digi
 #### Testeo de flujo.
 
 #### Flujo final
-![Arquitectura del sitio Dashboard](https://raw.githubusercontent.com/SakuraBravo/proyecto-5-coworking-developer/master/src/img/arqDashMedia.jpg)
+![Arquitectura del sitio Dashboard](https://raw.githubusercontent.com/sanrey254/proyecto-5-coworking-developer/master/src/img/arquitecturaDashbord-Alta.jpg)
 
 #### Mockups de alta fidelidad
 #### Arquitectura del sitio.
