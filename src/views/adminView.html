@@ -33,7 +33,7 @@
                             </div>
                         </div>
                     </button>
-                    <button class="list-group-item">
+                    <button class="list-group-item" onclick="drawAnalytics()">
                         <div class="row">
                             <div class="col-12">
                                 <i class="fas fa-chart-line icons-size"></i>
@@ -77,7 +77,7 @@
             </div>
             <div class="col-md-10 mt-4">
                 <div class="row">
-                    <div class="col-md-3 mb-3">
+                    <div class="col-md-3 mb-3 table0">
                         <div class="card">
                             <div class="card-body">
                                 <p class="text text-center">Visitantes</p>
@@ -85,7 +85,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 mb-3">
+                    <div class="col-md-6 mb-3 table0">
                         <div class="card">
                             <div class="card-body">
                                 <p class="text text-center" id="year"></p>
@@ -97,7 +97,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 mb-3">
+                    <div class="col-md-3 mb-3 table0">
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
@@ -129,6 +129,9 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-6" id="chart1">
+                    </div>
+                    <div class="col-md-6" id="chart2"></div>
                     <div class="col-md-12">
                         <table class="table small-text" id="table1">
                             <thead class="thead-dark">
@@ -155,6 +158,7 @@
                             <th scope="col">Nombre</th>
                             <th scope="col">Teléfono</th>
                             <th scope="col">Email</th>
+                            <th scope="col">Visitantes</th>
                         </tr>
                     </thead>
                     <tbody id="table-content2">
@@ -167,6 +171,7 @@
                             <th scope="col">Nombre</th>
                             <th scope="col">Email</th>
                             <th scope="col">Agencia</th>
+                            <th scope="col">Visitantes</th>
                         </tr>
                     </thead>
                     <tbody id="table-content3">
@@ -183,6 +188,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
+    <script src="../dist/Chart.min.js"></script>
     <script src="../dist/html2canvas.min.js"></script>
     <script src="../dist/jspdf.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>

@@ -149,12 +149,12 @@ window.drawStatusBadge = (status, userID) => {
     statusElements = `<span class="badge badge-primary"><i class="fas fa-clock"></i> Pendiente</span>`;
   } else if (status === 2) {
     statusElements = '<span> N/A</span>';
-  }else{
+  } else {
     let db = firebase.firestore();
     db.collection('visitors').doc(userID).get()
-    .then(response =>{
-      document.getElementById(`departure-time${userID}`).innerHTML = `<span>${response.data().departureTime}</span>`;
-    })
+      .then(response => {
+        document.getElementById(`departure-time${userID}`).innerHTML = `<span>${response.data().departureTime}</span>`;
+      })
   }
   return statusElements;
 }
@@ -179,9 +179,15 @@ window.showUserCard = (userID) => {
 window.drawListOfVisitors = () => {
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
-      document.getElementById('table1').style.display = 'block';
+      document.getElementById('table1').style.display = 'table';
       document.getElementById('table2').style.display = 'none';
       document.getElementById('table3').style.display = 'none';
+      document.getElementById('chart1').style.display = 'none';
+      document.getElementById('chart2').style.display = 'none';
+      const elements = document.getElementsByClassName('table0');
+      for (let i = 0; i < elements.length; i++) {
+        elements[i].style.display = 'block';
+      }
       let db = firebase.firestore();
       let tableContent = '';
       let i = 1;
@@ -224,7 +230,7 @@ window.drawListOfVisitors = () => {
           });
           document.getElementById('table-content').innerHTML = tableContent;
           document.getElementById('today-visitors').innerHTML = todayVisitors;
-          document.getElementById('day-and-month').innerHTML = todayDay;
+          document.getElementById('day-and-month').innerHTML = todayDay[0];
           document.getElementById('year').innerHTML = todayDate.slice(6, 10);
           document.getElementById('interview-motive').innerHTML = interviewMotive;
           document.getElementById('personal-motive').innerHTML = personalMotive;
@@ -236,15 +242,21 @@ window.drawListOfVisitors = () => {
           console.log('Error', error);
         });
     } else {
-      location.href = ('adminLogin.html');
+      location.href = ('AdminLogin.html');
     }
   });
 }
 
 window.drawListOfAgencies = () => {
   document.getElementById('table1').style.display = 'none';
-  document.getElementById('table2').style.display = 'block';
+  document.getElementById('table2').style.display = 'table';
   document.getElementById('table3').style.display = 'none';
+  document.getElementById('chart1').style.display = 'none';
+  document.getElementById('chart2').style.display = 'none';
+  const elements = document.getElementsByClassName('table0');
+  for (let i = 0; i < elements.length; i++) {
+    elements[i].style.display = 'none';
+  }
   let db = firebase.firestore();
   let tableContent = '';
   let i = 1;
@@ -252,11 +264,13 @@ window.drawListOfAgencies = () => {
     .then(result => {
       result.forEach(host => {
         tableContent += `<tr>
-        <th scope="row">${i++}</th>
-        <td>${host.data().Agencia}</td>
-        <td>${host.data().Teléfono}</td>
-        <td>${host.data().email}</td>
-      </tr>`
+        <th scope="row" class="text-center">${i++}</th>
+        <td class="text-center">${host.data().Agencia}</td>
+        <td class="text-center">${host.data().Teléfono}</td>
+        <td class="text-center">${host.data().email}</td>
+        <td class="text-center" id="visitors-by-agency${host.id}"></td>
+      </tr>`;
+        getNumberOfVisitorByAgency(host.id);
       });
       document.getElementById('table-content2').innerHTML = tableContent;
     })
@@ -265,10 +279,44 @@ window.drawListOfAgencies = () => {
     })
 }
 
+window.getNumberOfVisitorByAgency = (agencyID) => {
+  let db = firebase.firestore();
+  let numberOfVisitors = 0;
+  db.collection('visitors').get()
+    .then(response => {
+      response.forEach(visitor => {
+        if (visitor.data().userAgencyID === agencyID) {
+          numberOfVisitors++;
+        }
+      })
+      document.getElementById(`visitors-by-agency${agencyID}`).innerHTML = numberOfVisitors;
+    })
+}
+
+window.getNumberOfVisitorByHost = (hostID) => {
+  let db = firebase.firestore();
+  let numberOfVisitors = 0;
+  db.collection('visitors').get()
+    .then(response => {
+      response.forEach(visitor => {
+        if (visitor.data().userHost === hostID) {
+          numberOfVisitors++;
+        }
+      })
+      document.getElementById(`visitors-by-host${hostID}`).innerHTML = numberOfVisitors;
+    })
+}
+
 window.drawListOfHosts = () => {
   document.getElementById('table1').style.display = 'none';
   document.getElementById('table2').style.display = 'none';
-  document.getElementById('table3').style.display = 'block';
+  document.getElementById('table3').style.display = 'table';
+  document.getElementById('chart1').style.display = 'none';
+  document.getElementById('chart2').style.display = 'none';
+  const elements = document.getElementsByClassName('table0');
+  for (let i = 0; i < elements.length; i++) {
+    elements[i].style.display = 'none';
+  }
   let db = firebase.firestore();
   let tableContent = '';
   let i = 1;
@@ -276,18 +324,166 @@ window.drawListOfHosts = () => {
     .then(result => {
       result.forEach(host => {
         tableContent += `<tr>
-        <th scope="row">${i++}</th>
-        <td>${host.data().name}</td>
-        <td>${host.data().email}</td>
-        <td>${host.data().agencia}</td>
-      </tr>`
+        <th scope="row" class="text-center">${i++}</th>
+        <td class="text-center">${host.data().name}</td>
+        <td class="text-center">${host.data().email}</td>
+        <td class="text-center">${host.data().agencia}</td>
+        <td class="text-center" id="visitors-by-host${host.id}"></td>
+      </tr>`;
+        getNumberOfVisitorByHost(host.id);
       });
       document.getElementById('table-content3').innerHTML = tableContent;
     })
     .catch(error => {
       console.log('Error', error);
     })
+}
 
+window.drawAnalytics = () => {
+  document.getElementById('table1').style.display = 'none';
+  document.getElementById('table2').style.display = 'none';
+  document.getElementById('table3').style.display = 'none';
+  document.getElementById('chart1').style.display = 'block';
+  document.getElementById('chart2').style.display = 'block';
+  const elements = document.getElementsByClassName('table0');
+  for (let i = 0; i < elements.length; i++) {
+    elements[i].style.display = 'block';
+  }
+  let db = firebase.firestore();
+  let totalVisitors = 0;
+  let interviewMotive = 0;
+  let classMotive = 0;
+  let personalMotive = 0;
+  let meetingMotive = 0;
+  const todayDate = getRegisterDate();
+  const todayDay = getDay(todayDate);
+
+  db.collection('visitors').get()
+    .then(result => {
+      result.forEach(visitor => {
+        totalVisitors++;
+        if (visitor.data().userMotive === 'Personal') {
+          personalMotive++;
+        }
+        if (visitor.data().userMotive === 'Clase') {
+          classMotive++;
+        }
+        if (visitor.data().userMotive === 'Reunión') {
+          meetingMotive++;
+        }
+        if (visitor.data().userMotive === 'Entrevista') {
+          interviewMotive++;
+        }
+      });
+      document.getElementById('today-visitors').innerHTML = totalVisitors;
+      document.getElementById('day-and-month').innerHTML = todayDay[1];
+      document.getElementById('year').innerHTML = todayDate.slice(6, 10);
+      document.getElementById('interview-motive').innerHTML = interviewMotive;
+      document.getElementById('personal-motive').innerHTML = personalMotive;
+      document.getElementById('meeting-motive').innerHTML = meetingMotive;
+      document.getElementById('class-motive').innerHTML = classMotive;
+    })
+  drawChart1();
+  drawChart2();
+}
+
+window.drawChart1 = () => {
+  const canva = '<canvas id="myChart1"></canvas>';
+  document.getElementById('chart1').innerHTML = canva;
+  let ctx = document.getElementById('myChart1').getContext('2d');
+  let db = firebase.firestore();
+  let monday = 0;
+  let tuesday = 0;
+  let wednesday = 0;
+  let thursday = 0;
+  let friday = 0;
+  let saturday = 0;
+  let sunday = 0;
+  db.collection('visitors').get()
+    .then(response => {
+      response.forEach(visitor => {
+        let dayOfWeek = getDay(visitor.data().date);
+        if (dayOfWeek[2] === 'Lunes') {
+          monday++;
+        }
+        if (dayOfWeek[2] === 'Martes') {
+          tuesday++;
+        }
+        if (dayOfWeek[2] === 'Miércoles') {
+          wednesday++;
+        }
+        if (dayOfWeek[2] === 'Jueves') {
+          thursday++;
+        }
+        if (dayOfWeek[2] === 'Viernes') {
+          friday++;
+        }
+        if (dayOfWeek[2] === 'Sábado') {
+          saturday++;
+        }
+        if (dayOfWeek[2] === 'Domingo') {
+          sunday++;
+        }
+      })
+      let chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"],
+          datasets: [{
+            label: "Días con más visitas",
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [monday, tuesday, wednesday, thursday, friday, saturday, sunday],
+          }]
+        }
+      });
+    })
+}
+
+window.drawChart2 = () => {
+  const canva = '<canvas id="myChart2"></canvas>';
+  document.getElementById('chart2').innerHTML = canva;
+  let ctx = document.getElementById('myChart2').getContext('2d');
+  let db = firebase.firestore();
+  let hour = [];
+  let firstLapseOfTime = 0;
+  let secondLapseOfTime = 0;
+  let thirdLapseOfTime = 0;
+  let fourLapseOfTime = 0;
+  db.collection('visitors').get()
+    .then(response => {
+      response.forEach(visitor => {
+        let hourOfVisitor = visitor.data().hour
+        hour.push(parseInt(hourOfVisitor.slice(0, 2)));
+      });
+      hour.forEach(element => {
+        if (element >= 8 && element <= 12) {
+          firstLapseOfTime++;
+        }
+        if (element >= 12 && element <= 14) {
+          secondLapseOfTime++;
+        }
+        if (element >= 14 && element <= 18) {
+          thirdLapseOfTime++;
+        }
+        if (element >= 18 && element <= 20) {
+          fourLapseOfTime++;
+        }
+
+      })
+      let chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ["8-12hrs", "12-14hrs", "14-18hrs", "18-20hrs"],
+          datasets: [{
+            label: "Horarios con más visitas",
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [firstLapseOfTime, secondLapseOfTime, thirdLapseOfTime, fourLapseOfTime],
+          }]
+        }
+      });
+    });
 }
 
 window.getRegisterDate = () => {
@@ -329,14 +525,14 @@ window.getDay = (todayDate) => {
   const days = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
   const moths = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Noviembre", "Diciembre"];
   const newDay = new Date(moth + ' ' + day + ', ' + year + ' 12:00:00');
-  const newDate = `${days[newDay.getUTCDay()]} ${day} de ${moths[newDay.getMonth()]}`;
+  const newDate = [`${days[newDay.getUTCDay()]} ${day} de ${moths[newDay.getMonth()]}`, `${moths[newDay.getMonth()]}`, `${days[newDay.getUTCDay()]}`];
   return newDate;
 }
 
 window.signOut = () => {
   firebase.auth().signOut()
     .then(element => {
-      location.href('adminLogin.html');
+      location.href('AdminLogin.html');
     }).catch(error => {
       console.log('Error al cerrar sesión');
     });
