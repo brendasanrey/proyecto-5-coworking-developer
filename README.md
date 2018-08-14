@@ -122,9 +122,22 @@ De hecho identificamos al menos 3 usuarios: *“El visitante”*, *“Recepcioni
 
 Al ubicar todas estas variables, decidimos dirigir nuestros esfuerzos a solucionar los problemas del último usuario principalmente, ya que al final del día él es quien tomará la decisión de adquirir o no nuestro producto.
 
+#### Historias de usuario
+Creemos que entre más cerremos el target a donde va dirigido nuestro negocio, más efectivo puede ser nuestro mensaje, es por eso que hemos definido que nuestro producto, aunque tiene que solucionar necesidades de los 3 distintos de usuarios que van a interactuar con él, principalmente nos enfocaremos en las dolencias y problemas del Coworking.
+
+** *El usuario quiere* **:
+
+	* Agilizar la entrada y salida de personas sin perder control y seguridad.
+	* Tener registro de las personas que acceden.
+	* Poder consultar ése registro de forma ágil.
+	* Brindarle a sus contratantes información clara de quién los visita.
+	* Brindarle información instantánea a sus contratantes (los anfitriones) de cuando llegan visitantes que pidan por ellos.
+	* Obtener información que les ayude a mejorar sus servicios de acuerdo a las necesidades que están pasando actualmente en el lugar.
+	* Obtener información que le ayude a mejorar su infraestructura de acuerdo a las necesidades latentes de sus contratantes (los anfitriones).
+	* Dar una apariencia de estar a la vanguardia.**
 
 
-* Historias de usuario
+
 * Entrevistas como cliente incognito
 * Análisis de productos en el mercado
 * Benchmark
