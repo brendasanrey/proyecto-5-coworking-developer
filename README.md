@@ -91,7 +91,39 @@ Explicar las Funciones implementadas.
 
 ### 3. Investigación y planteamiento de hipótesis User Research
 
-* Hipótesis
+#### Hipótesis
+El primer acercamiento al problema partió desde nuestra propia experiencia e indagatoria, ya que pasamos nuestra mayor parte del tiempo en los espacios que ocupa Laboratoria en el coworking TERMINAL 1, solemos observar diariamente los diferentes tipos de persona que se alojan en un espacio como este, además de tener algunas experiencias propias al respecto.
+Conforme a esta plática inicial surgieron las siguientes hipótesis:
+
+1. En México, casi cualquier lugar que requiera un registro de visitantes, tiene resuelta pobremente la situación con un libro de visitas donde los usuarios garabatean sus nombres e intenciones, no siempre siendo sinceros o correctos por diferentes razones, enumeramos unas cuantas:
+ * Prisa
+ * El hartazgo que da ese tipo de tramites para entrar a un espacio.
+ * Ser Graciosos.
+ * Que el usuario no le interesa el control de la seguridad del lugar.
+ * Piensa cometer un delito.
+
+2. El producto no va dirigido a un sólo usuario.
+De hecho identificamos al menos 3 usuarios: *“El visitante”*, *“Recepcionista”* y quien está ocupando un espacio en el coworking, para efectos de esta investigación lo llamaremos *“Anfitrión”*.
+
+3. Dentro del mismo desmembramiento del problema, e imaginándonos posibles dolencias y satisfacciones de registrarse caímos en cuenta que podíamos englobar a nuestros usuarios visitantes en 4 diferentes situaciones:
+  * *Con registro previo (hecho en línea) y con cita.*
+  * *Con registro previo (hecho en línea) y sin cita.*
+  * *Sin registro previo pero con una cita a una hora determinada. El usuario tiene que llegar y registrarse y pasar a ver a su anfitrión.*
+ * *Sin registro previo y sin ninguna cita. El usuario tiene que registrarse y es probable que al no haber hecho un espacio previamente en su agenda, el anfitrión no pueda atenderle en ningún momento.*
+
+4. En el área de recepción destacamos dos tipos de perfiles:
+ * La (casi siempre) mujer joven que cada que alguien llega al mostrador ella le pregunta qué necesita y toma sus datos o
+ * el miembro de seguridad (casi siempre hombre) que le pide a los visitantes que se registren.
+5. Anfitrión: Este usuario también tiene sus diferentes variantes dentro del universo coworking
+ * Marca de prestigio con un área de trabajo habitando ese coworking (aprox 6 miembros)
+ * Startup (3 a 6 miembros)
+ * Freelance (miembro en solitario.
+6.- CoWorking: Pensando en todos los diferentes perfiles de usuario caímos en cuenta que el lugar dónde ocurre el registro también es perfilable, es un ente que tiene que dar servicio a los 3 tipos de usuario anteriores (con sus variantes) además de mantener las instalaciones funcionales.
+
+Al ubicar todas estas variables, decidimos dirigir nuestros esfuerzos a solucionar los problemas del último usuario principalmente, ya que al final del día él es quien tomará la decisión de adquirir o no nuestro producto.
+
+
+
 * Historias de usuario
 * Entrevistas como cliente incognito
 * Análisis de productos en el mercado
