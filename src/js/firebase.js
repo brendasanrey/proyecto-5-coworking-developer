@@ -162,17 +162,14 @@ window.drawStatusBadge = (status, userID) => {
 window.showUserCard = (userID) => {
   let db = firebase.firestore();
   let doc = new jsPDF();
-  let img = new Image();
-  img.src = '../img/tarjetaID.jpeg';
 
   db.collection('visitors').doc(userID).get()
     .then(result => {
       let content = `<div class="small-text border-card d-none" id="userCard"><p>Nombre: ${result.data().userName}</p><p>Correo: ${result.data().userEmail}</p><p>Host: ${result.data().userAgencyName}</p><p>Fecha: ${result.data().date}</p></div>`;
       document.getElementById('card-gafete').innerHTML = content;
-      /*doc.fromHTML($('#card-gafete').get(0), 20, 20, {
+      doc.fromHTML($('#card-gafete').get(0), 20, 20, {
         'width': 300
-      });*/
-      doc.addImage(img,'JPEG', 20, 20, 180, 160)
+      });
       doc.save('gafete.pdf');
     })
     .catch(error => {
