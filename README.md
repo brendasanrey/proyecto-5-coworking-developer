@@ -136,9 +136,9 @@ Creemos que entre más cerremos el target a donde va dirigido nuestro negocio, m
 	* Obtener información que le ayude a mejorar su infraestructura de acuerdo a las necesidades latentes de sus contratantes (los anfitriones).
 	* Dar una apariencia de estar a la vanguardia.**
 
+#### Entrevistas como cliente incognito
 
 
-* Entrevistas como cliente incognito
 * Análisis de productos en el mercado
 * Benchmark
 * Insights
