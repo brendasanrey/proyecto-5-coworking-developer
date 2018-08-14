@@ -268,12 +268,42 @@ window.drawListOfAgencies = () => {
         <td class="text-center">${host.data().Agencia}</td>
         <td class="text-center">${host.data().Teléfono}</td>
         <td class="text-center">${host.data().email}</td>
-      </tr>`
+        <td class="text-center" id="visitors-by-agency${host.id}"></td>
+      </tr>`;
+        getNumberOfVisitorByAgency(host.id);
       });
       document.getElementById('table-content2').innerHTML = tableContent;
     })
     .catch(error => {
       console.log('Error', error);
+    })
+}
+
+window.getNumberOfVisitorByAgency = (agencyID) => {
+  let db = firebase.firestore();
+  let numberOfVisitors = 0;
+  db.collection('visitors').get()
+    .then(response => {
+      response.forEach(visitor => {
+        if (visitor.data().userAgencyID === agencyID) {
+          numberOfVisitors++;
+        }
+      })
+      document.getElementById(`visitors-by-agency${agencyID}`).innerHTML = numberOfVisitors;
+    })
+}
+
+window.getNumberOfVisitorByHost = (hostID) => {
+  let db = firebase.firestore();
+  let numberOfVisitors = 0;
+  db.collection('visitors').get()
+    .then(response => {
+      response.forEach(visitor => {
+        if (visitor.data().userHost === hostID) {
+          numberOfVisitors++;
+        }
+      })
+      document.getElementById(`visitors-by-host${hostID}`).innerHTML = numberOfVisitors;
     })
 }
 
@@ -298,7 +328,9 @@ window.drawListOfHosts = () => {
         <td class="text-center">${host.data().name}</td>
         <td class="text-center">${host.data().email}</td>
         <td class="text-center">${host.data().agencia}</td>
-      </tr>`
+        <td class="text-center" id="visitors-by-host${host.id}"></td>
+      </tr>`;
+        getNumberOfVisitorByHost(host.id);
       });
       document.getElementById('table-content3').innerHTML = tableContent;
     })
@@ -423,36 +455,35 @@ window.drawChart2 = () => {
       response.forEach(visitor => {
         let hourOfVisitor = visitor.data().hour
         hour.push(parseInt(hourOfVisitor.slice(0, 2)));
-      })
-      console.log(hour)
+      });
       hour.forEach(element => {
-      if (element >= 8 && element <= 12) {
-        firstLapseOfTime++;
-      }
-      if (element >= 12 && element <= 14) {
-        secondLapseOfTime++;
-      }
-      if (element >= 14 && element <= 18) {
-        thirdLapseOfTime++;
-      }
-      if (element >= 18 && element <= 20) {
-        fourLapseOfTime++;
-      }
-      
-    })
-    let chart = new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: ["8-12hrs", "12-14hrs", "14-18hrs", "18-20hrs"],
-        datasets: [{
-          label: "Horarios con más visitas",
-          backgroundColor: 'rgb(255, 99, 132)',
-          borderColor: 'rgb(255, 99, 132)',
-          data: [firstLapseOfTime, secondLapseOfTime, thirdLapseOfTime, fourLapseOfTime],
-        }]
-      }
+        if (element >= 8 && element <= 12) {
+          firstLapseOfTime++;
+        }
+        if (element >= 12 && element <= 14) {
+          secondLapseOfTime++;
+        }
+        if (element >= 14 && element <= 18) {
+          thirdLapseOfTime++;
+        }
+        if (element >= 18 && element <= 20) {
+          fourLapseOfTime++;
+        }
+
+      })
+      let chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ["8-12hrs", "12-14hrs", "14-18hrs", "18-20hrs"],
+          datasets: [{
+            label: "Horarios con más visitas",
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [firstLapseOfTime, secondLapseOfTime, thirdLapseOfTime, fourLapseOfTime],
+          }]
+        }
+      });
     });
-  });
 }
 
 window.getRegisterDate = () => {
