@@ -1,5 +1,3 @@
-console.log('Se ligo correctamente app.js')
-
 var myform = $('form#myform')
 myform.submit(function (event) {
   event.preventDefault()
@@ -9,6 +7,7 @@ myform.submit(function (event) {
   var template_id = 'Cow_Working';
 
   myform.find('button').text('Sending...')
+  console.log(myform);
   emailjs.sendForm(service_id, template_id, 'myform')
   	.then(function () {
     	alert('Sent!')
