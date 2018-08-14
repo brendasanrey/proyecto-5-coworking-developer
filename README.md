@@ -52,36 +52,36 @@ Se dividio el trabajo en pequeñas tareas las cuales se fueron resolviendo en or
 En principio tenemos que diferenciar a los usuarios que se verán involucrados en el uso del portal de registro.
 Existen 2 usuarios que serán involucrados en el uso de la interfaz el primer usuarios es el recepcionista o el administrador de la entrada del coworking y el otro usuario involucrado es el visitante.  
 Una vez que se han identificado quienes serán los usuarios, se crea la primera estretegìa de planeación, Se tiene que generar un ingreso con autenticación para los recepcionistas o administradores del coworking.
-Además se debe generar la base de datos de las agencias del coworking, así mismo se crea una base de datos para el registro de los visitantes. 
+Además se debe generar la base de datos de las agencias del coworking, así mismo se crea una base de datos para el registro de los visitantes.
 Como parte importante del desarrollo se busca implementar que el visitante al ingresar sus datos se tome una foto como medida de seguridad y quedará su registro en el dashboasrd del recepcionista, hasta que registre su salida del coworking.
 Otra implementación a la que se pretende es que al llegar al coworking el visitante ingrese sus datos y reciba un email en el que se le invite a pasar a la sala de espera en lo que se autoriza su ingreso a la agencia que visita.
- 
+
 ### 2. Detalles sobre la implementación
 Para crear el dashboard de la recepción se uso el servicio de Firebase, para generar la base de datos utilizamos el servicio de Firestore Cloud, se trabajo el servicio de Autenticación de Firebase. Se utilizó Boostrap para la maquetación de la interfaz. Se trabajo el servicio de mensajes de confirmación con EmailJS.
 
-#### Tecnologías:
+#### Tecnologías
+**Github:** Es una plataforma de desarrollo colaborativo para alojar proyectos utilizando el sistema de control de versiones Git. Es donde se aloja nuestro proyecto y por donde compartimos nuestro trabajo.
 
-*Breve descripción de las tecnologías utilizadas, frameworks (versiones incluidas), compiladores, gestores de tareas, librerías relevantes de javascript. En fin, un pequeño parrafo que con leerlo te puedas hacer una idea de sobre qué estás trabajando.*
+**GitKraken**: Es una potente interfaz gráfica multiplataforma para git. Es muy intuitiva de usar y ayuda a llevar un seguimiento de los repositorios, ver la actividad de todos los integrantes, dar commits, fetch sin necesidad de la consola, entre otras cosas. Decidimos acercarnos a esta interfaz ya que fue una recomendación de un experto en un evento de Git (comentó que en muchos trabajos están utilizando esta interfaz)  al que asistió Brenda, y creemos que es importante tener conocimiento de las diferentes opciones que te solicitarán en un espacio de trabajo.
 
-GitHub:
+**Google Drive:** Creamos una nueva cuenta de correo *cowdevelop@gmail.com* para ligarla con los mensajes que van dirigidos a los visitantes cuando se registran y también para poder utilizar su plataforma de espacio libre en Drive para linkear videos, o audios.
 
-GitKraken:
+**Procesadores de textos:** *Visual Studio, Sublime y Atom.*
+ Utilizamos distintos tipos de procesadores de texto para poder crear la sintaxis de los archivos HTML/JS/CSS, así como la sintaxis markdown para documentar el proceso de desarrollo.
 
-Google Drive:
-
-Procesadores de texto: Visual Studio, Sublime, Atom
-
+**Bootstrap:** Es un framework originalmente creado por Twitter, que permite crear interfaces web con CSS y JavaScript, cuya particularidad es la de adaptar la interfaz del sitio web al tamaño del dispositivo en que se visualice (responsive). Utilizamos bootstrap pues creemos que es el que nos da mayor versatilidad en cuanto a adaptar un diseño y movimientos de los elementos en la interfaz.
 Firebase:
 
-Trello:
+**Trello:** Es una herramienta de gestión de proyectos que hace que la colaboración sea sencilla y dinámica. Nosotras decidimos no utilizar un canvas físico y trasladar todo nuestro sprint planning al trello.
 
-Scketch:
+**Sketch app:** Es una aplicación para la computadora que te permite maquetar tus diseños de interface de una forma similar que Adobe Ilustrator. En este proyecto utilizamos Sketch para el proceso de diseño de las dos interfaces, la del dashboard y la de el registro de visitas.
 
-Adobe Ilustrator:
+**Adobe Ilustrator:** Es un programa de vectores para ilustraciones y maquetaciones que van a digital o a impresión. En este caso se usó el programa como apoyo en el diseño de las interfaces, diseño de imagen corporativa del proyecto y maquetación inicial.
 
-Adobe Photoshop:
+**Adobe Photoshop:** Es un programa de edición de foto e ilustración digital. Utilizamos Photoshop para crear o editar las imágenes necesarias para la implementación de la plataforma, así como para la implementación de los prototipos.
 
-Marvel:
+**Marvel app:** Aplicación wep util para la implementación de prototipos que se pueden compartir por medio de una URL y así facilitar el proceso de testeo. Compatible con la plataforma Sketch app.
+
 
 
 #### Organización:
@@ -91,9 +91,54 @@ Explicar las Funciones implementadas.
 
 ### 3. Investigación y planteamiento de hipótesis User Research
 
-* Hipótesis
-* Historias de usuario
-* Entrevistas como cliente incognito
+#### Hipótesis
+El primer acercamiento al problema partió desde nuestra propia experiencia e indagatoria, ya que pasamos nuestra mayor parte del tiempo en los espacios que ocupa Laboratoria en el coworking TERMINAL 1, solemos observar diariamente los diferentes tipos de persona que se alojan en un espacio como este, además de tener algunas experiencias propias al respecto.
+Conforme a esta plática inicial surgieron las siguientes hipótesis:
+
+1. En México, casi cualquier lugar que requiera un registro de visitantes, tiene resuelta pobremente la situación con un libro de visitas donde los usuarios garabatean sus nombres e intenciones, no siempre siendo sinceros o correctos por diferentes razones, enumeramos unas cuantas:
+ * Prisa
+ * El hartazgo que da ese tipo de tramites para entrar a un espacio.
+ * Ser Graciosos.
+ * Que el usuario no le interesa el control de la seguridad del lugar.
+ * Piensa cometer un delito.
+
+2. El producto no va dirigido a un sólo usuario.
+De hecho identificamos al menos 3 usuarios: *“El visitante”*, *“Recepcionista”* y quien está ocupando un espacio en el coworking, para efectos de esta investigación lo llamaremos *“Anfitrión”*.
+
+3. Dentro del mismo desmembramiento del problema, e imaginándonos posibles dolencias y satisfacciones de registrarse caímos en cuenta que podíamos englobar a nuestros usuarios visitantes en 4 diferentes situaciones:
+  * *Con registro previo (hecho en línea) y con cita.*
+  * *Con registro previo (hecho en línea) y sin cita.*
+  * *Sin registro previo pero con una cita a una hora determinada. El usuario tiene que llegar y registrarse y pasar a ver a su anfitrión.*
+ * *Sin registro previo y sin ninguna cita. El usuario tiene que registrarse y es probable que al no haber hecho un espacio previamente en su agenda, el anfitrión no pueda atenderle en ningún momento.*
+
+4. En el área de recepción destacamos dos tipos de perfiles:
+ * La (casi siempre) mujer joven que cada que alguien llega al mostrador ella le pregunta qué necesita y toma sus datos o
+ * el miembro de seguridad (casi siempre hombre) que le pide a los visitantes que se registren.
+5. Anfitrión: Este usuario también tiene sus diferentes variantes dentro del universo coworking
+ * Marca de prestigio con un área de trabajo habitando ese coworking (aprox 6 miembros)
+ * Startup (3 a 6 miembros)
+ * Freelance (miembro en solitario.
+6.- CoWorking: Pensando en todos los diferentes perfiles de usuario caímos en cuenta que el lugar dónde ocurre el registro también es perfilable, es un ente que tiene que dar servicio a los 3 tipos de usuario anteriores (con sus variantes) además de mantener las instalaciones funcionales.
+
+Al ubicar todas estas variables, decidimos dirigir nuestros esfuerzos a solucionar los problemas del último usuario principalmente, ya que al final del día él es quien tomará la decisión de adquirir o no nuestro producto.
+
+#### Historias de usuario
+Creemos que entre más cerremos el target a donde va dirigido nuestro negocio, más efectivo puede ser nuestro mensaje, es por eso que hemos definido que nuestro producto, aunque tiene que solucionar necesidades de los 3 distintos de usuarios que van a interactuar con él, principalmente nos enfocaremos en las dolencias y problemas del Coworking.
+
+** *El usuario quiere* **:
+
+	* Agilizar la entrada y salida de personas sin perder control y seguridad.
+	* Tener registro de las personas que acceden.
+	* Poder consultar ése registro de forma ágil.
+	* Brindarle a sus contratantes información clara de quién los visita.
+	* Brindarle información instantánea a sus contratantes (los anfitriones) de cuando llegan visitantes que pidan por ellos.
+	* Obtener información que les ayude a mejorar sus servicios de acuerdo a las necesidades que están pasando actualmente en el lugar.
+	* Obtener información que le ayude a mejorar su infraestructura de acuerdo a las necesidades latentes de sus contratantes (los anfitriones).
+	* Dar una apariencia de estar a la vanguardia.**
+
+#### Entrevistas como cliente incognito
+
+
 * Análisis de productos en el mercado
 * Benchmark
 * Insights
