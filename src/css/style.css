@@ -44,3 +44,27 @@
 .gray-text{
     color: #969292;
 }
+
+.btn-warning{
+    background-color: #EDC000;
+}
+
+.w-60{
+    width: 60%;
+}
+
+.h-100v{
+    height: 100vh;
+}
+
+.bck-1{
+    background-image: url('../img/coworking01.jpg');
+    background-size: cover;
+    background-position: center center;
+    min-height: 100%;
+    min-width: 100%;
+    width: auto;
+    height: auto;
+    margin: 0;
+    position: absolute;
+}
