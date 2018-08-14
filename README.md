@@ -136,7 +136,45 @@ Creemos que entre más cerremos el target a donde va dirigido nuestro negocio, m
 	* Obtener información que le ayude a mejorar su infraestructura de acuerdo a las necesidades latentes de sus contratantes (los anfitriones).
 	* Dar una apariencia de estar a la vanguardia.**
 
-#### Entrevistas como cliente incognito
+#### Cliente incógnito.
+Pudimos visitar tres distintos coWorkings, uno dentro del área Roma Centro de la CDMX, que es muy popular para estos negocios, y otro en el Estado de México, ubicado en Ciudad Satélite.
+
+Las entrevistas como *cliente incógnito* nos revelaron situaciones mucho más sinceras a que si hubiéramos ido directamente con los usuarios y revelado nuestras intenciones ya que nuestro producto también abarca una dolencia al respecto de la seguridad de los establecimientos.
+
+##### Protocolo de entrevista:
+
+Llegamos interpretando una startup que busca un espacio para 3 a 5 personas con posibilidad de incrementar el número después, así que estábamos abiertas a comenzar con un espacio comunitario pero estábamos interesadas en una oficina por motivos de seguridad (la idea es que se notara que abiertamente nos preocupaba mucho).
+
+**Preguntas**:
+
+   * ¿Cómo es el acceso ya que eres un inquilino del coworking?
+   * ¿Se les da acceso a visitantes en áreas de trabajo para los inquilinos?
+   * ¿Cómo es el acceso de visitantes?
+   * ¿Hay áreas para atender mis visitas?
+   * ¿Cómo me comunican que llegaron mis visitas?
+
+**Cow**
+
+  * Sigue teniendo la entrada con persona de seguridad al frente.
+  * Sigue teniendo cuaderno de visitas.
+  * Te piden identificación al entrar.
+  * Identifican a los visitantes con un gafete.
+  * Un miembro de seguridad está al pendiente para acompañarte a la salida cuando te retires.
+
+![Cow](https://raw.githubusercontent.com/SakuraBravo/proyecto-5-coworking-developer/master/src/img/cow-research01.JPG)
+![Cow](https://raw.githubusercontent.com/SakuraBravo/proyecto-5-coworking-developer/master/src/img/cow-research02.JPG)
+
+La señora que nos atendió remarcaba mucho el hecho de que es un coworking digital, y que están en remodelación, también nos comentó que estaban en proceso de cambiar su registro de entrada a una app que te envía mensaje cuando tienes una visita (intuyo que se refieren a Envoy).
+
+
+**Capital Coworking**
+
+  * Tienen a una persona en recepción para tomar tus datos (sólo el nombre.
+  * No tienen cuaderno de visitas.
+  * No te piden identificación al entrar.
+  * No tienen manera de identificar a los visitantes y el control de entradas y salidas es a consideración de la persona en la puerta.
+  * Te advierten que estés al pendiente de tus cosas.
+![cow](https://raw.githubusercontent.com/SakuraBravo/proyecto-5-coworking-developer/master/src/img/capitalcoworking01.JPG)
 
 
 * Análisis de productos en el mercado
@@ -151,11 +189,12 @@ Creemos que entre más cerremos el target a donde va dirigido nuestro negocio, m
 
 #### Wireframes de media fidelidad
 
-[Arquitectura Dashboard](https://raw.githubusercontent.com/SakuraBravo/proyecto-5-coworking-developer/master/src/img/arqDashMedia.jpg)
+![Arquitectura Dashboard](https://raw.githubusercontent.com/SakuraBravo/proyecto-5-coworking-developer/master/src/img/arqDashMedia.jpg)
 
 #### Testeo de flujo.
 
 #### Flujo final
+![Arquitectura del sitio Dashboard](https://raw.githubusercontent.com/SakuraBravo/proyecto-5-coworking-developer/master/src/img/arqDashMedia.jpg)
 
 #### Mockups de alta fidelidad
 #### Arquitectura del sitio.
