@@ -183,6 +183,7 @@ window.drawListOfVisitors = () => {
       document.getElementById('table2').style.display = 'none';
       document.getElementById('table3').style.display = 'none';
       document.getElementById('chart1').style.display = 'none';
+      document.getElementById('chart2').style.display = 'none';
       const elements = document.getElementsByClassName('table0');
       for (let i = 0; i < elements.length; i++) {
         elements[i].style.display = 'block';
@@ -251,6 +252,7 @@ window.drawListOfAgencies = () => {
   document.getElementById('table2').style.display = 'table';
   document.getElementById('table3').style.display = 'none';
   document.getElementById('chart1').style.display = 'none';
+  document.getElementById('chart2').style.display = 'none';
   const elements = document.getElementsByClassName('table0');
   for (let i = 0; i < elements.length; i++) {
     elements[i].style.display = 'none';
@@ -280,6 +282,7 @@ window.drawListOfHosts = () => {
   document.getElementById('table2').style.display = 'none';
   document.getElementById('table3').style.display = 'table';
   document.getElementById('chart1').style.display = 'none';
+  document.getElementById('chart2').style.display = 'none';
   const elements = document.getElementsByClassName('table0');
   for (let i = 0; i < elements.length; i++) {
     elements[i].style.display = 'none';
@@ -309,6 +312,7 @@ window.drawAnalytics = () => {
   document.getElementById('table2').style.display = 'none';
   document.getElementById('table3').style.display = 'none';
   document.getElementById('chart1').style.display = 'block';
+  document.getElementById('chart2').style.display = 'block';
   const elements = document.getElementsByClassName('table0');
   for (let i = 0; i < elements.length; i++) {
     elements[i].style.display = 'block';
@@ -348,6 +352,7 @@ window.drawAnalytics = () => {
       document.getElementById('class-motive').innerHTML = classMotive;
     })
   drawChart1();
+  drawChart2();
 }
 
 window.drawChart1 = () => {
@@ -401,6 +406,53 @@ window.drawChart1 = () => {
         }
       });
     })
+}
+
+window.drawChart2 = () => {
+  const canva = '<canvas id="myChart2"></canvas>';
+  document.getElementById('chart2').innerHTML = canva;
+  let ctx = document.getElementById('myChart2').getContext('2d');
+  let db = firebase.firestore();
+  let hour = [];
+  let firstLapseOfTime = 0;
+  let secondLapseOfTime = 0;
+  let thirdLapseOfTime = 0;
+  let fourLapseOfTime = 0;
+  db.collection('visitors').get()
+    .then(response => {
+      response.forEach(visitor => {
+        let hourOfVisitor = visitor.data().hour
+        hour.push(parseInt(hourOfVisitor.slice(0, 2)));
+      })
+      console.log(hour)
+      hour.forEach(element => {
+      if (element >= 8 && element <= 12) {
+        firstLapseOfTime++;
+      }
+      if (element >= 12 && element <= 14) {
+        secondLapseOfTime++;
+      }
+      if (element >= 14 && element <= 18) {
+        thirdLapseOfTime++;
+      }
+      if (element >= 18 && element <= 20) {
+        fourLapseOfTime++;
+      }
+      
+    })
+    let chart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ["8-12hrs", "12-14hrs", "14-18hrs", "18-20hrs"],
+        datasets: [{
+          label: "Horarios con más visitas",
+          backgroundColor: 'rgb(255, 99, 132)',
+          borderColor: 'rgb(255, 99, 132)',
+          data: [firstLapseOfTime, secondLapseOfTime, thirdLapseOfTime, fourLapseOfTime],
+        }]
+      }
+    });
+  });
 }
 
 window.getRegisterDate = () => {
