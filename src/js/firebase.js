@@ -179,9 +179,13 @@ window.showUserCard = (userID) => {
 window.drawListOfVisitors = () => {
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
-      document.getElementById('table1').style.display = 'block';
+      document.getElementById('table1').style.display = 'table';
       document.getElementById('table2').style.display = 'none';
       document.getElementById('table3').style.display = 'none';
+      const elements = document.getElementsByClassName('table0');
+      for(let i = 0; i < elements.length; i++){
+        elements[i].style.display = 'block';
+      }
       let db = firebase.firestore();
       let tableContent = '';
       let i = 1;
@@ -243,8 +247,12 @@ window.drawListOfVisitors = () => {
 
 window.drawListOfAgencies = () => {
   document.getElementById('table1').style.display = 'none';
-  document.getElementById('table2').style.display = 'block';
+  document.getElementById('table2').style.display = 'table';
   document.getElementById('table3').style.display = 'none';
+  const elements = document.getElementsByClassName('table0');
+  for (let i = 0; i < elements.length; i++) {
+    elements[i].style.display = 'none';
+  }
   let db = firebase.firestore();
   let tableContent = '';
   let i = 1;
@@ -252,10 +260,10 @@ window.drawListOfAgencies = () => {
     .then(result => {
       result.forEach(host => {
         tableContent += `<tr>
-        <th scope="row">${i++}</th>
-        <td>${host.data().Agencia}</td>
-        <td>${host.data().Teléfono}</td>
-        <td>${host.data().email}</td>
+        <th scope="row" class="text-center">${i++}</th>
+        <td class="text-center">${host.data().Agencia}</td>
+        <td class="text-center">${host.data().Teléfono}</td>
+        <td class="text-center">${host.data().email}</td>
       </tr>`
       });
       document.getElementById('table-content2').innerHTML = tableContent;
@@ -268,7 +276,11 @@ window.drawListOfAgencies = () => {
 window.drawListOfHosts = () => {
   document.getElementById('table1').style.display = 'none';
   document.getElementById('table2').style.display = 'none';
-  document.getElementById('table3').style.display = 'block';
+  document.getElementById('table3').style.display = 'table';
+  const elements = document.getElementsByClassName('table0');
+  for (let i = 0; i < elements.length; i++) {
+    elements[i].style.display = 'none';
+  }
   let db = firebase.firestore();
   let tableContent = '';
   let i = 1;
@@ -276,10 +288,10 @@ window.drawListOfHosts = () => {
     .then(result => {
       result.forEach(host => {
         tableContent += `<tr>
-        <th scope="row">${i++}</th>
-        <td>${host.data().name}</td>
-        <td>${host.data().email}</td>
-        <td>${host.data().agencia}</td>
+        <th scope="row" class="text-center">${i++}</th>
+        <td class="text-center">${host.data().name}</td>
+        <td class="text-center">${host.data().email}</td>
+        <td class="text-center">${host.data().agencia}</td>
       </tr>`
       });
       document.getElementById('table-content3').innerHTML = tableContent;
