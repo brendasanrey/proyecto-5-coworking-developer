@@ -524,7 +524,7 @@ window.getDay = (todayDate) => {
   const moth = todayDate.slice(3, 5);
   const year = todayDate.slice(6, 10);
   const days = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
-  const moths = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Noviembre", "Diciembre"];
+  const moths = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
   const newDay = new Date(moth + ' ' + day + ', ' + year + ' 12:00:00');
   const newDate = [`${days[newDay.getUTCDay()]} ${day} de ${moths[newDay.getMonth()]}`, `${moths[newDay.getMonth()]}`, `${days[newDay.getUTCDay()]}`];
   return newDate;
